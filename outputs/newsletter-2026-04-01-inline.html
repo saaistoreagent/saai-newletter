@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ko" style="box-sizing: border-box; margin: 0; padding: 0;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STORE LETTER</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+
+  <style>
+@media (max-width: 640px) {
+  .email-wrapper {
+    padding: 0;
+  }
+
+  .email-container {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .modules-body {
+    padding: 0 12px 16px;
+  }
+
+  .module {
+    padding: 16px;
+    margin-top: 16px;
+  }
+
+  .mod-header {
+    padding: 20px 16px 24px;
+  }
+
+  .hdr-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .hdr-meta {
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  .hdr-rule {
+    margin: 0 -16px 16px;
+  }
+
+  .mobile-br {
+    display: inline;
+  }
+
+  .hdr-headline {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .hdr-summary {
+    font-size: 11px;
+  }
+
+  .module-h {
+    font-size: 22px;
+    line-height: 1.35;
+  }
+
+  .module-sub {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .trend-item,
+.event-item,
+.weather-card {
+    padding: 12px;
+  }
+
+  .trend-kw {
+    font-size: 16px;
+  }
+
+  .trend-status {
+    margin-left: 0;
+    margin-top: 6px;
+  }
+
+  .trend-source {
+    display: block;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .weather-grid {
+    flex-direction: column;
+  }
+
+  .weather-card {
+    flex: 0 0 100%;
+  }
+
+  .weather-card .w-weather-info {
+    align-items: flex-start;
+  }
+
+  .w-temp {
+    white-space: normal;
+  }
+
+  .event-item {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .ev-rule {
+    align-self: stretch;
+    min-height: 40px;
+  }
+
+  .ev-info,
+.trend-body,
+.w-temp-wrap {
+    min-width: 0;
+  }
+
+  .ev-legend {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .fb-btns {
+    flex-direction: column;
+  }
+
+  .fb-btn {
+    width: 100%;
+  }
+}
+@media (max-width: 400px) {
+  .hdr-headline {
+    font-size: 24px;
+  }
+
+  .event-item {
+    flex-wrap: wrap;
+  }
+
+  .ev-rule,
+.ev-dot {
+    display: none;
+  }
+
+  .ev-date {
+    min-width: auto;
+  }
+}
+</style>
+</head>
+<body style="box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 15px; font-weight: 400; color: #3d434d; background: #2f343b; line-height: 1.7; -webkit-font-smoothing: antialiased; letter-spacing: 0; word-break: keep-all; overflow-wrap: break-word;">
+
+<div class="email-wrapper" style="box-sizing: border-box; margin: 0; width: 100%; padding: 32px 16px;">
+<div class="email-container" style="box-sizing: border-box; padding: 0; max-width: 720px; margin: 0 auto; background: #f9f9fb; border-radius: 16px; overflow: hidden;">
+
+  <!-- MODULE 1: HEADER -->
+  <header class="module mod-header" style="box-sizing: border-box; margin: 0; background: #376ae2; padding: 24px 24px 32px; border: none; border-radius: 0; margin-top: 0;">
+    <div class="hdr-top" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+      <svg class="hdr-logo" viewBox="0 0 293 35" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing: border-box; margin: 0; padding: 0; display: block; height: 14px; width: auto;">
+        <path d="M273.774 34.464V8.87999H282.126L282.606 17.28L280.734 15.84C281.15 14.432 281.79 13.168 282.654 12.048C283.55 10.896 284.622 9.99999 285.87 9.35999C287.118 8.68799 288.43 8.35199 289.806 8.35199C290.382 8.35199 290.926 8.39999 291.438 8.49599C291.95 8.55999 292.43 8.65599 292.878 8.78399L290.43 18.672C290.078 18.448 289.582 18.256 288.942 18.096C288.302 17.904 287.614 17.808 286.878 17.808C286.238 17.808 285.662 17.92 285.15 18.144C284.638 18.336 284.206 18.624 283.854 19.008C283.502 19.392 283.23 19.856 283.038 20.4C282.846 20.912 282.75 21.52 282.75 22.224V34.464H273.774Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+        <path d="M257.985 34.944C255.073 34.944 252.561 34.384 250.449 33.264C248.337 32.112 246.705 30.544 245.553 28.56C244.401 26.544 243.825 24.256 243.825 21.696C243.825 19.776 244.145 18 244.785 16.368C245.425 14.736 246.321 13.328 247.473 12.144C248.625 10.928 249.985 9.99999 251.553 9.35999C253.153 8.68799 254.897 8.35199 256.785 8.35199C258.641 8.35199 260.321 8.67199 261.825 9.31199C263.361 9.95199 264.673 10.864 265.761 12.048C266.881 13.232 267.729 14.624 268.305 16.224C268.913 17.824 269.185 19.584 269.121 21.504L269.073 23.52H248.913L247.809 19.056H261.921L261.057 20.016V19.104C261.057 18.4 260.865 17.792 260.481 17.28C260.129 16.736 259.649 16.32 259.041 16.032C258.433 15.744 257.745 15.6 256.977 15.6C255.889 15.6 254.977 15.824 254.241 16.272C253.537 16.688 252.993 17.296 252.609 18.096C252.225 18.896 252.033 19.856 252.033 20.976C252.033 22.256 252.289 23.36 252.801 24.288C253.345 25.216 254.129 25.936 255.153 26.448C256.209 26.96 257.489 27.216 258.993 27.216C259.985 27.216 260.849 27.088 261.585 26.832C262.353 26.576 263.169 26.128 264.033 25.488L268.161 31.296C267.041 32.192 265.905 32.912 264.753 33.456C263.633 33.968 262.513 34.336 261.393 34.56C260.273 34.816 259.137 34.944 257.985 34.944Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+        <path d="M228.11 34.464V2.39996H237.038V34.464H228.11ZM223.886 16.464V8.87996H241.502V16.464H223.886Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+        <path d="M208.657 34.464V2.39996H217.585V34.464H208.657ZM204.433 16.464V8.87996H222.049V16.464H204.433Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+        <path d="M191.188 34.944C188.276 34.944 185.764 34.384 183.652 33.264C181.54 32.112 179.908 30.544 178.756 28.56C177.604 26.544 177.028 24.256 177.028 21.696C177.028 19.776 177.348 18 177.988 16.368C178.628 14.736 179.524 13.328 180.676 12.144C181.828 10.928 183.188 9.99999 184.756 9.35999C186.356 8.68799 188.1 8.35199 189.988 8.35199C191.844 8.35199 193.524 8.67199 195.028 9.31199C196.564 9.95199 197.876 10.864 198.964 12.048C200.084 13.232 200.932 14.624 201.508 16.224C202.116 17.824 202.388 19.584 202.324 21.504L202.276 23.52H182.116L181.012 19.056H195.124L194.26 20.016V19.104C194.26 18.4 194.068 17.792 193.684 17.28C193.332 16.736 192.852 16.32 192.244 16.032C191.636 15.744 190.948 15.6 190.18 15.6C189.092 15.6 188.18 15.824 187.444 16.272C186.74 16.688 186.196 17.296 185.812 18.096C185.428 18.896 185.236 19.856 185.236 20.976C185.236 22.256 185.492 23.36 186.004 24.288C186.548 25.216 187.332 25.936 188.356 26.448C189.412 26.96 190.692 27.216 192.196 27.216C193.188 27.216 194.052 27.088 194.788 26.832C195.556 26.576 196.372 26.128 197.236 25.488L201.364 31.296C200.244 32.192 199.108 32.912 197.956 33.456C196.836 33.968 195.716 34.336 194.596 34.56C193.476 34.816 192.34 34.944 191.188 34.944Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+        <path d="M150.976 34.464V0.864014H160.48V26.256H175.12V34.464H150.976Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+        <path d="M118.344 34.944C115.432 34.944 112.92 34.384 110.808 33.264C108.696 32.112 107.064 30.544 105.912 28.56C104.76 26.544 104.184 24.256 104.184 21.696C104.184 19.776 104.504 18 105.144 16.368C105.784 14.736 106.68 13.328 107.832 12.144C108.984 10.928 110.344 9.99999 111.912 9.35999C113.512 8.68799 115.256 8.35199 117.144 8.35199C119 8.35199 120.68 8.67199 122.184 9.31199C123.72 9.95199 125.032 10.864 126.12 12.048C127.24 13.232 128.088 14.624 128.664 16.224C129.272 17.824 129.544 19.584 129.48 21.504L129.432 23.52H109.272L108.168 19.056H122.28L121.416 20.016V19.104C121.416 18.4 121.224 17.792 120.84 17.28C120.488 16.736 120.008 16.32 119.4 16.032C118.792 15.744 118.104 15.6 117.336 15.6C116.248 15.6 115.336 15.824 114.6 16.272C113.896 16.688 113.352 17.296 112.968 18.096C112.584 18.896 112.392 19.856 112.392 20.976C112.392 22.256 112.648 23.36 113.16 24.288C113.704 25.216 114.488 25.936 115.512 26.448C116.568 26.96 117.848 27.216 119.352 27.216C120.344 27.216 121.208 27.088 121.944 26.832C122.712 26.576 123.528 26.128 124.392 25.488L128.52 31.296C127.4 32.192 126.264 32.912 125.112 33.456C123.992 33.968 122.872 34.336 121.752 34.56C120.632 34.816 119.496 34.944 118.344 34.944Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+        <path d="M84.1646 34.464V8.87999H92.5165L92.9966 17.28L91.1245 15.84C91.5406 14.432 92.1805 13.168 93.0445 12.048C93.9405 10.896 95.0126 9.99999 96.2606 9.35999C97.5086 8.68799 98.8205 8.35199 100.197 8.35199C100.773 8.35199 101.317 8.39999 101.829 8.49599C102.341 8.55999 102.821 8.65599 103.269 8.78399L100.821 18.672C100.469 18.448 99.9726 18.256 99.3326 18.096C98.6926 17.904 98.0046 17.808 97.2686 17.808C96.6286 17.808 96.0526 17.92 95.5406 18.144C95.0286 18.336 94.5966 18.624 94.2446 19.008C93.8926 19.392 93.6206 19.856 93.4286 20.4C93.2366 20.912 93.1405 21.52 93.1405 22.224V34.464H84.1646Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+        <path d="M65.1881 34.944C62.4681 34.944 60.0361 34.368 57.8921 33.216C55.7481 32.064 54.0681 30.496 52.8521 28.512C51.6361 26.528 51.0281 24.24 51.0281 21.648C51.0281 19.056 51.6361 16.768 52.8521 14.784C54.0681 12.8 55.7481 11.232 57.8921 10.08C60.0361 8.92799 62.4681 8.35199 65.1881 8.35199C67.9081 8.35199 70.3241 8.92799 72.4361 10.08C74.5801 11.232 76.2601 12.8 77.4761 14.784C78.6921 16.768 79.3001 19.056 79.3001 21.648C79.3001 24.24 78.6921 26.528 77.4761 28.512C76.2601 30.496 74.5801 32.064 72.4361 33.216C70.3241 34.368 67.9081 34.944 65.1881 34.944ZM65.1881 27.408C66.1481 27.408 67.0121 27.168 67.7801 26.688C68.5801 26.176 69.1881 25.488 69.6041 24.624C70.0521 23.728 70.2761 22.736 70.2761 21.648C70.2761 20.496 70.0521 19.488 69.6041 18.624C69.1881 17.76 68.5801 17.088 67.7801 16.608C67.0121 16.096 66.1481 15.84 65.1881 15.84C64.1961 15.84 63.3161 16.096 62.5481 16.608C61.7801 17.088 61.1721 17.776 60.7241 18.672C60.2761 19.536 60.0521 20.528 60.0521 21.648C60.0521 22.736 60.2761 23.728 60.7241 24.624C61.1721 25.488 61.7801 26.176 62.5481 26.688C63.3161 27.168 64.1961 27.408 65.1881 27.408Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+        <path d="M35.3134 34.464V2.39996H44.2414V34.464H35.3134ZM31.0894 16.464V8.87996H48.7054V16.464H31.0894Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+        <path d="M15.168 34.944C12.768 34.944 10.624 34.672 8.736 34.128C6.88 33.584 5.232 32.8 3.792 31.776C2.384 30.752 1.12 29.552 0 28.176L5.568 21.888C7.168 23.968 8.816 25.36 10.512 26.064C12.208 26.736 13.856 27.072 15.456 27.072C16.16 27.072 16.8 27.008 17.376 26.88C17.952 26.72 18.384 26.48 18.672 26.16C18.992 25.808 19.152 25.376 19.152 24.864C19.152 24.416 19.024 24.032 18.768 23.712C18.512 23.392 18.16 23.12 17.712 22.896C17.264 22.64 16.768 22.416 16.224 22.224C15.68 22.032 15.136 21.888 14.592 21.792C14.048 21.664 13.52 21.536 13.008 21.408C11.12 20.992 9.472 20.464 8.064 19.824C6.656 19.184 5.472 18.432 4.512 17.568C3.584 16.672 2.88 15.648 2.4 14.496C1.952 13.344 1.728 12.048 1.728 10.608C1.728 9.04 2.096 7.6 2.832 6.288C3.568 4.976 4.544 3.856 5.76 2.928C6.976 1.968 8.368 1.248 9.936 0.768002C11.536 0.256001 13.2 0 14.928 0C17.296 0 19.312 0.240002 20.976 0.720003C22.64 1.168 24.032 1.824 25.152 2.688C26.304 3.552 27.296 4.56 28.128 5.712L22.464 11.184C21.792 10.448 21.056 9.84 20.256 9.36C19.488 8.88 18.688 8.528 17.856 8.304C17.024 8.048 16.176 7.92 15.312 7.92C14.512 7.92 13.808 8 13.2 8.16C12.624 8.32 12.176 8.56 11.856 8.88C11.536 9.168 11.376 9.568 11.376 10.08C11.376 10.528 11.552 10.928 11.904 11.28C12.256 11.6 12.704 11.872 13.248 12.096C13.792 12.32 14.368 12.512 14.976 12.672C15.616 12.8 16.192 12.912 16.704 13.008C18.464 13.36 20.064 13.824 21.504 14.4C22.976 14.944 24.256 15.648 25.344 16.512C26.432 17.344 27.264 18.368 27.84 19.584C28.416 20.8 28.704 22.224 28.704 23.856C28.704 26.256 28.096 28.288 26.88 29.952C25.696 31.584 24.08 32.832 22.032 33.696C20.016 34.528 17.728 34.944 15.168 34.944Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+      </svg>
+      <div class="hdr-meta" style="box-sizing: border-box; margin: 0; padding: 0; text-align: right; font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 0.02em; line-height: 1;">Vol. 1 &nbsp;|&nbsp; 2026년 4월 1일 (수)</div>
+    </div>
+
+    <hr class="hdr-rule" style="box-sizing: border-box; padding: 0; border: none; border-top: 1px solid rgba(255,255,255,0.14); margin: 0 -24px 24px;">
+
+    <h1 class="hdr-headline" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 34px; font-weight: 700; color: #ffffff; line-height: 1.35; margin-bottom: 12px; letter-spacing: -0.01em;">4월 1주차 스토어레터</h1>
+    <p class="hdr-summary" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; color: rgba(255,255,255,0.70); line-height: 1.7;">4월 1일 (수) — 4월 7일 (화)</p>
+
+  </header>
+  <!-- /MODULE 1: HEADER -->
+
+  <div class="modules-body" style="box-sizing: border-box; margin: 0; padding: 0 24px 24px;">
+
+  <!-- MODULE 2: 편의점 트렌드 -->
+  <section class="module mod-trend" style="box-sizing: border-box; margin: 0; background: #ffffff; border: 1px solid #e9e9ea; border-radius: 10px; padding: 24px; margin-top: 24px;">
+    <h2 class="module-h" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 27px; font-weight: 700; color: #3d434d; line-height: 1.5; margin-bottom: 4px;">이번주 편의점 트렌드</h2>
+    <p class="module-sub" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 15px; color: #787f89; margin-bottom: 24px; line-height: 1.7;">봉투 대란부터 야구 콜라보까지, 편의점 안팎에서 움직이는 신호예요.</p>
+
+    <ul class="trend-list" style="box-sizing: border-box; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px;">
+
+      <!-- ▲ 상승 -->
+      <li class="trend-item" style="box-sizing: border-box; margin: 0; display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px;">
+        <div class="trend-body" style="box-sizing: border-box; margin: 0; padding: 0; flex: 1; min-width: 0;">
+          <div class="trend-kw" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 500; color: #376ae2; margin-bottom: 2px; line-height: 1.5;">종량제봉투 품절 <span class="trend-status up" style="box-sizing: border-box; margin: 0; display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 9999px; margin-left: 6px; vertical-align: middle; background: #e8f8e8; color: #1ab715;">▲ 상승</span></div>
+          <div class="trend-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; color: #565f6c; line-height: 1.7;">나프타 공급 불안으로 종량제봉투 사재기가 번지면서 편의점·마트 판매량이 한꺼번에 폭증했어요. 공급 불안 심리가 생활용품 전반으로 확산될 수 있는 패턴이에요.</div>
+          <a class="trend-source" href="https://imnews.imbc.com/replay/2026/nwdesk/article/6810971_37004.html" target="_blank" style="box-sizing: border-box; margin: 0; padding: 0; display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 500; color: #376ae2; letter-spacing: 0.02em; text-decoration: none; opacity: 0.75;">MBC 뉴스데스크 — 종량제봉투 품절 대란</a>
+        </div>
+      </li>
+
+      <li class="trend-item" style="box-sizing: border-box; margin: 0; display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px;">
+        <div class="trend-body" style="box-sizing: border-box; margin: 0; padding: 0; flex: 1; min-width: 0;">
+          <div class="trend-kw" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 500; color: #376ae2; margin-bottom: 2px; line-height: 1.5;">올더어글리 두쫀쿠 <span class="trend-status up" style="box-sizing: border-box; margin: 0; display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 9999px; margin-left: 6px; vertical-align: middle; background: #e8f8e8; color: #1ab715;">▲ 상승</span></div>
+          <div class="trend-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; color: #565f6c; line-height: 1.7;">"카페 두쫀쿠보다 편의점이 더 맛있다"는 SNS 비교 후기가 퍼지면서 한 번 지나간 유행이 다시 살아나고 있어요. CU 단독 상품이고, 가성비 비교 콘텐츠가 디저트 재구매를 끌어내는 구조예요.</div>
+          <a class="trend-source" href="https://www.segye.com/newsView/20260320504223" target="_blank" style="box-sizing: border-box; margin: 0; padding: 0; display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 500; color: #376ae2; letter-spacing: 0.02em; text-decoration: none; opacity: 0.75;">세계일보 — 두쫀쿠 누적 1,000만 개 돌파</a>
+        </div>
+      </li>
+
+      <li class="trend-item" style="box-sizing: border-box; margin: 0; display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px;">
+        <div class="trend-body" style="box-sizing: border-box; margin: 0; padding: 0; flex: 1; min-width: 0;">
+          <div class="trend-kw" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 500; color: #376ae2; margin-bottom: 2px; line-height: 1.5;">왕뚜껑 국물라볶이 <span class="trend-status up" style="box-sizing: border-box; margin: 0; display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 9999px; margin-left: 6px; vertical-align: middle; background: #e8f8e8; color: #1ab715;">▲ 상승</span></div>
+          <div class="trend-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; color: #565f6c; line-height: 1.7;">2월 출시 후 GS25 2+1 행사와 맞물려 "인기템이라 재고 적음" 후기가 퍼지고 있어요. 라면과 떡볶이를 한 번에 해결하려는 한 끼 간편식 수요가 세분화되는 신호예요.</div>
+          <a class="trend-source" href="https://www.newsis.com/view/NISX20260225_0003525408" target="_blank" style="box-sizing: border-box; margin: 0; padding: 0; display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 500; color: #376ae2; letter-spacing: 0.02em; text-decoration: none; opacity: 0.75;">뉴시스 — 팔도 왕뚜껑 국물라볶이 출시</a>
+        </div>
+      </li>
+
+      <li class="trend-item" style="box-sizing: border-box; margin: 0; display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px;">
+        <div class="trend-body" style="box-sizing: border-box; margin: 0; padding: 0; flex: 1; min-width: 0;">
+          <div class="trend-kw" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 500; color: #376ae2; margin-bottom: 2px; line-height: 1.5;">버터떡 <span class="trend-status up" style="box-sizing: border-box; margin: 0; display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 9999px; margin-left: 6px; vertical-align: middle; background: #e8f8e8; color: #1ab715;">▲ 상승</span></div>
+          <div class="trend-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; color: #565f6c; line-height: 1.7;">카페에서 유행하던 버터떡을 CU가 편의점 상품으로 내놓으면서 SNS 후기가 다시 퍼지고 있어요. 숏폼에서 3주 만에 터지는 초단기 디저트 유행이 편의점까지 빠르게 내려오는 구조예요. CU 단독 상품이에요.</div>
+          <a class="trend-source" href="https://biz.heraldcorp.com/article/10693911" target="_blank" style="box-sizing: border-box; margin: 0; padding: 0; display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 500; color: #376ae2; letter-spacing: 0.02em; text-decoration: none; opacity: 0.75;">헤럴드경제 — 편의점 디저트는 속도가 생명</a>
+        </div>
+      </li>
+
+      <!-- ◆ 신상 -->
+      <li class="trend-item" style="box-sizing: border-box; margin: 0; display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px;">
+        <div class="trend-body" style="box-sizing: border-box; margin: 0; padding: 0; flex: 1; min-width: 0;">
+          <div class="trend-kw" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 500; color: #376ae2; margin-bottom: 2px; line-height: 1.5;">세븐일레븐 × 롯데자이언츠 콜라보 <span class="trend-status new" style="box-sizing: border-box; margin: 0; display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 9999px; margin-left: 6px; vertical-align: middle; background: #ede9fe; color: #6d28d9;">◆ 신상</span></div>
+          <div class="trend-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; color: #565f6c; line-height: 1.7;">KBO 개막과 함께 롯데자이언츠 콜라보 과자·굿즈 15종이 순차 출시됐어요. 스포츠 팬덤이 편의점 콜라보 간식 구매로 직결되는 시즌이에요. 세븐일레븐 단독 상품이에요.</div>
+          <a class="trend-source" href="https://www.hankyung.com/article/202603176209i" target="_blank" style="box-sizing: border-box; margin: 0; padding: 0; display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 500; color: #376ae2; letter-spacing: 0.02em; text-decoration: none; opacity: 0.75;">한국경제 — 세븐일레븐 롯데자이언츠 콜라보 출시</a>
+        </div>
+      </li>
+
+      <!-- ▼ 하락 -->
+      <li class="trend-item" style="box-sizing: border-box; margin: 0; display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px;">
+        <div class="trend-body" style="box-sizing: border-box; margin: 0; padding: 0; flex: 1; min-width: 0;">
+          <div class="trend-kw" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 500; color: #376ae2; margin-bottom: 2px; line-height: 1.5;">서울우유 황치즈크림 소금빵 <span class="trend-status down" style="box-sizing: border-box; margin: 0; display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 9999px; margin-left: 6px; vertical-align: middle; background: #fceeee; color: #e05959;">▼ 하락</span></div>
+          <div class="trend-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; color: #565f6c; line-height: 1.7;">GS25 서울우유 시리즈 신상인데 "별로"라는 후기가 SNS에 퍼지고 있어요. 기대가 높았던 신상이 기대에 못 미치면 재구매율이 빠르게 떨어지는 패턴이에요.</div>
+          <a class="trend-source" href="http://gs25.gsretail.com/gscvs/ko/customer-engagement/event/detail/publishing?pageNum=1&eventCode=8842361556512&uiel=Mobile" target="_blank" style="box-sizing: border-box; margin: 0; padding: 0; display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 500; color: #376ae2; letter-spacing: 0.02em; text-decoration: none; opacity: 0.75;">GS25 — 서울우유 황치즈크림빵 프로모션</a>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+  <!-- /MODULE 2 -->
+
+
+  <!-- MODULE 5B: 메가트렌드 -->
+  <section class="module mod-trend" style="box-sizing: border-box; margin: 0; background: #ffffff; border: 1px solid #e9e9ea; border-radius: 10px; padding: 24px; margin-top: 24px;">
+    <h2 class="module-h" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 27px; font-weight: 700; color: #3d434d; line-height: 1.5; margin-bottom: 4px;">편의점 밖에서 먼저 뜨는 것들</h2>
+    <p class="module-sub" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 15px; color: #787f89; margin-bottom: 24px; line-height: 1.7;">카페·SNS에서 시작된 신호가 편의점까지 내려오고 있어요.</p>
+
+    <ul class="trend-list" style="box-sizing: border-box; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px;">
+
+      <li class="trend-item" style="box-sizing: border-box; margin: 0; display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px;">
+        <div class="trend-body" style="box-sizing: border-box; margin: 0; padding: 0; flex: 1; min-width: 0;">
+          <div class="trend-kw" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 500; color: #376ae2; margin-bottom: 2px; line-height: 1.5;">헤이티 음료</div>
+          <div class="trend-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; color: #565f6c; line-height: 1.7;">중국 밀크티 브랜드 헤이티·차백도가 서울에 빠르게 매장을 늘리고 있어요. 차 위에 부드러운 크림 거품을 올린 '클라우드 폼' 음료가 디저트처럼 달콤하다는 후기가 SNS에서 퍼지면서, 카페 음료 트렌드가 편의점 차 음료 수요로 번질 가능성이 커지고 있어요.</div>
+          <a class="trend-source" href="https://news.bizwatch.co.kr/article/consumer/2026/03/10/0039" target="_blank" style="box-sizing: border-box; margin: 0; padding: 0; display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 500; color: #376ae2; letter-spacing: 0.02em; text-decoration: none; opacity: 0.75;">비즈워치 — 중국 밀크티 한국 茶 시장 공략</a>
+        </div>
+      </li>
+
+      <li class="trend-item" style="box-sizing: border-box; margin: 0; display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px;">
+        <div class="trend-body" style="box-sizing: border-box; margin: 0; padding: 0; flex: 1; min-width: 0;">
+          <div class="trend-kw" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 500; color: #376ae2; margin-bottom: 2px; line-height: 1.5;">벚꽃 나들이 간식</div>
+          <div class="trend-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; color: #565f6c; line-height: 1.7;">올해 서울 벚꽃이 평년보다 10일 빨리 개화하면서 "편의점 간식 사서 꽃놀이" 패턴이 SNS에 퍼지고 있어요. 나들이 수요가 이른 봄부터 편의점 간식·음료 매출을 끌어올리는 신호예요.</div>
+          <a class="trend-source" href="https://edaily.co.kr/News/Read?newsId=01876166645388240" target="_blank" style="box-sizing: border-box; margin: 0; padding: 0; display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 500; color: #376ae2; letter-spacing: 0.02em; text-decoration: none; opacity: 0.75;">이데일리 — 서울 벚꽃 평년보다 10일 빨리 개화</a>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+  <!-- /MODULE 5B -->
+
+
+  <!-- MODULE 4: 권역별 날씨 -->
+  <section class="module mod-weather" style="box-sizing: border-box; margin: 0; background: #ffffff; border: 1px solid #e9e9ea; border-radius: 10px; padding: 24px; margin-top: 24px;">
+    <h2 class="module-h" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 27px; font-weight: 700; color: #3d434d; line-height: 1.5; margin-bottom: 4px;">이번주 날씨</h2>
+    <p class="module-sub" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 15px; color: #787f89; margin-bottom: 24px; line-height: 1.7;">전국 비 예보에 기온은 포근해요. 비닐우산 진열 미리 채워두세요.</p>
+
+    <div class="weather-grid" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px;">
+
+      <!-- 수도권 -->
+      <div class="weather-card" style="box-sizing: border-box; margin: 0; flex: 0 0 calc(50% - 4px); min-width: 0; overflow: hidden; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px; padding: 16px; display: flex; flex-direction: column;">
+        <div class="w-region" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; font-weight: 600; color: #565f6c; margin-bottom: 4px;">수도권</div>
+        <div class="w-weather-info" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; min-width: 0;">
+          <div class="w-icon" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 24px; line-height: 1; flex-shrink: 0;">🌧</div>
+          <div class="w-temp-wrap" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; flex-direction: column; min-width: 0;">
+            <div class="w-temp" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 700; color: #24282d; line-height: 1.2; white-space: nowrap;">최저10° / 최고17°</div>
+            <div class="w-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; color: #8e949d; margin-top: 2px; line-height: 1.3;">비 예보 · 벚꽃 개화</div>
+          </div>
+        </div>
+        <div class="w-sale-tip-wrap" style="box-sizing: border-box; margin: 0; padding: 0; margin-top: 8px;">
+          <span class="w-tip-label" style="box-sizing: border-box; margin: 0; padding: 0; display: block; font-size: 10px; font-weight: 700; color: #376ae2; letter-spacing: 0.06em; margin-bottom: 4px;">판매 TIP</span>
+          <div class="w-sale-tip" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; font-weight: 500; color: #24282d; line-height: 1.6; overflow-wrap: break-word; word-break: break-word;">비닐우산 수요가 급증해요. 진열대 앞쪽에 배치하고 따뜻한 음료도 함께 준비하세요.</div>
+        </div>
+      </div>
+
+      <!-- 강원 -->
+      <div class="weather-card" style="box-sizing: border-box; margin: 0; flex: 0 0 calc(50% - 4px); min-width: 0; overflow: hidden; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px; padding: 16px; display: flex; flex-direction: column;">
+        <div class="w-region" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; font-weight: 600; color: #565f6c; margin-bottom: 4px;">강원</div>
+        <div class="w-weather-info" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; min-width: 0;">
+          <div class="w-icon" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 24px; line-height: 1; flex-shrink: 0;">🌧</div>
+          <div class="w-temp-wrap" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; flex-direction: column; min-width: 0;">
+            <div class="w-temp" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 700; color: #24282d; line-height: 1.2; white-space: nowrap;">최저7° / 최고17°</div>
+            <div class="w-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; color: #8e949d; margin-top: 2px; line-height: 1.3;">비 예보 · 일교차 큼</div>
+          </div>
+        </div>
+        <div class="w-sale-tip-wrap" style="box-sizing: border-box; margin: 0; padding: 0; margin-top: 8px;">
+          <span class="w-tip-label" style="box-sizing: border-box; margin: 0; padding: 0; display: block; font-size: 10px; font-weight: 700; color: #376ae2; letter-spacing: 0.06em; margin-bottom: 4px;">판매 TIP</span>
+          <div class="w-sale-tip" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; font-weight: 500; color: #24282d; line-height: 1.6; overflow-wrap: break-word; word-break: break-word;">아침 7도로 쌀쌀해요. 오전 따뜻한 음료·즉석 국물 발주 유지하세요.</div>
+        </div>
+      </div>
+
+      <!-- 충청권 -->
+      <div class="weather-card" style="box-sizing: border-box; margin: 0; flex: 0 0 calc(50% - 4px); min-width: 0; overflow: hidden; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px; padding: 16px; display: flex; flex-direction: column;">
+        <div class="w-region" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; font-weight: 600; color: #565f6c; margin-bottom: 4px;">충청권</div>
+        <div class="w-weather-info" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; min-width: 0;">
+          <div class="w-icon" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 24px; line-height: 1; flex-shrink: 0;">🌧</div>
+          <div class="w-temp-wrap" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; flex-direction: column; min-width: 0;">
+            <div class="w-temp" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 700; color: #24282d; line-height: 1.2; white-space: nowrap;">최저10° / 최고17°</div>
+            <div class="w-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; color: #8e949d; margin-top: 2px; line-height: 1.3;">비 예보</div>
+          </div>
+        </div>
+        <div class="w-sale-tip-wrap" style="box-sizing: border-box; margin: 0; padding: 0; margin-top: 8px;">
+          <span class="w-tip-label" style="box-sizing: border-box; margin: 0; padding: 0; display: block; font-size: 10px; font-weight: 700; color: #376ae2; letter-spacing: 0.06em; margin-bottom: 4px;">판매 TIP</span>
+          <div class="w-sale-tip" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; font-weight: 500; color: #24282d; line-height: 1.6; overflow-wrap: break-word; word-break: break-word;">비 오는 날 간편식 매출이 올라요. 삼각김밥·도시락 진열 수량 늘려두세요.</div>
+        </div>
+      </div>
+
+      <!-- 전라권 -->
+      <div class="weather-card" style="box-sizing: border-box; margin: 0; flex: 0 0 calc(50% - 4px); min-width: 0; overflow: hidden; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px; padding: 16px; display: flex; flex-direction: column;">
+        <div class="w-region" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; font-weight: 600; color: #565f6c; margin-bottom: 4px;">전라권</div>
+        <div class="w-weather-info" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; min-width: 0;">
+          <div class="w-icon" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 24px; line-height: 1; flex-shrink: 0;">🌧</div>
+          <div class="w-temp-wrap" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; flex-direction: column; min-width: 0;">
+            <div class="w-temp" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 700; color: #24282d; line-height: 1.2; white-space: nowrap;">최저12° / 최고17°</div>
+            <div class="w-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; color: #8e949d; margin-top: 2px; line-height: 1.3;">비 예보</div>
+          </div>
+        </div>
+        <div class="w-sale-tip-wrap" style="box-sizing: border-box; margin: 0; padding: 0; margin-top: 8px;">
+          <span class="w-tip-label" style="box-sizing: border-box; margin: 0; padding: 0; display: block; font-size: 10px; font-weight: 700; color: #376ae2; letter-spacing: 0.06em; margin-bottom: 4px;">판매 TIP</span>
+          <div class="w-sale-tip" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; font-weight: 500; color: #24282d; line-height: 1.6; overflow-wrap: break-word; word-break: break-word;">비 그친 뒤 벚꽃 나들이 손님이 늘어요. 음료·스낵 재고 미리 채워두세요.</div>
+        </div>
+      </div>
+
+      <!-- 경상권 -->
+      <div class="weather-card" style="box-sizing: border-box; margin: 0; flex: 0 0 calc(50% - 4px); min-width: 0; overflow: hidden; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px; padding: 16px; display: flex; flex-direction: column;">
+        <div class="w-region" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; font-weight: 600; color: #565f6c; margin-bottom: 4px;">경상권</div>
+        <div class="w-weather-info" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; min-width: 0;">
+          <div class="w-icon" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 24px; line-height: 1; flex-shrink: 0;">🌧</div>
+          <div class="w-temp-wrap" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; flex-direction: column; min-width: 0;">
+            <div class="w-temp" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 700; color: #24282d; line-height: 1.2; white-space: nowrap;">최저13° / 최고17°</div>
+            <div class="w-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; color: #8e949d; margin-top: 2px; line-height: 1.3;">비 예보</div>
+          </div>
+        </div>
+        <div class="w-sale-tip-wrap" style="box-sizing: border-box; margin: 0; padding: 0; margin-top: 8px;">
+          <span class="w-tip-label" style="box-sizing: border-box; margin: 0; padding: 0; display: block; font-size: 10px; font-weight: 700; color: #376ae2; letter-spacing: 0.06em; margin-bottom: 4px;">판매 TIP</span>
+          <div class="w-sale-tip" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; font-weight: 500; color: #24282d; line-height: 1.6; overflow-wrap: break-word; word-break: break-word;">기온이 높아 비 그치면 차가운 음료 전환이 빨라요. 냉장 음료 재고 확인하세요.</div>
+        </div>
+      </div>
+
+      <!-- 제주 -->
+      <div class="weather-card" style="box-sizing: border-box; margin: 0; flex: 0 0 calc(50% - 4px); min-width: 0; overflow: hidden; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px; padding: 16px; display: flex; flex-direction: column;">
+        <div class="w-region" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; font-weight: 600; color: #565f6c; margin-bottom: 4px;">제주</div>
+        <div class="w-weather-info" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; min-width: 0;">
+          <div class="w-icon" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 24px; line-height: 1; flex-shrink: 0;">🌧</div>
+          <div class="w-temp-wrap" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; flex-direction: column; min-width: 0;">
+            <div class="w-temp" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 700; color: #24282d; line-height: 1.2; white-space: nowrap;">최저13° / 최고16°</div>
+            <div class="w-desc" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; color: #8e949d; margin-top: 2px; line-height: 1.3;">비 예보</div>
+          </div>
+        </div>
+        <div class="w-sale-tip-wrap" style="box-sizing: border-box; margin: 0; padding: 0; margin-top: 8px;">
+          <span class="w-tip-label" style="box-sizing: border-box; margin: 0; padding: 0; display: block; font-size: 10px; font-weight: 700; color: #376ae2; letter-spacing: 0.06em; margin-bottom: 4px;">판매 TIP</span>
+          <div class="w-sale-tip" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; font-weight: 500; color: #24282d; line-height: 1.6; overflow-wrap: break-word; word-break: break-word;">비 확률 높고 습해요. 비닐우산·레인코트와 따뜻한 간편식 진열 늘리세요.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="weather-source" style="box-sizing: border-box; margin: 0; padding: 0; margin-top: 16px; padding-top: 12px; border-top: 1px solid #e9e9ea; font-size: 10px; color: #8e949d; text-align: right;">출처: 기상청</div>
+  </section>
+  <!-- /MODULE 4 -->
+
+
+  <!-- MODULE 5A: 이벤트 / 일정 -->
+  <section class="module mod-events" style="box-sizing: border-box; margin: 0; background: #ffffff; border: 1px solid #e9e9ea; border-radius: 10px; padding: 24px; margin-top: 24px;">
+    <h2 class="module-h" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 27px; font-weight: 700; color: #3d434d; line-height: 1.5; margin-bottom: 4px;">한 달 내 이벤트</h2>
+    <p class="module-sub" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 15px; color: #787f89; margin-bottom: 24px; line-height: 1.7;">만우절부터 근로자의 날까지, 한 달간 이벤트가 이어져요.</p>
+
+    <div class="event-list" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px;">
+
+      <div class="event-item" style="box-sizing: border-box; margin: 0; display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px;">
+        <div class="ev-date" style="box-sizing: border-box; margin: 0; padding: 0; flex-shrink: 0; text-align: center; min-width: 40px;">
+          <div class="ev-mo" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #565f6c;">APR</div>
+          <div class="ev-day" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 24px; font-weight: 700; color: #24282d; line-height: 1;">1</div>
+        </div>
+        <div class="ev-rule" style="box-sizing: border-box; margin: 0; padding: 0; width: 1px; height: 32px; background: #e9e9ea; flex-shrink: 0;"></div>
+        <div class="ev-info" style="box-sizing: border-box; margin: 0; padding: 0; flex: 1;">
+          <div class="ev-type" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; color: #565f6c; font-weight: 500;">데이 · 만우절 (수)</div>
+          <div class="ev-name" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; font-weight: 400; color: #565f6c; line-height: 1.7;">편의점 한정판·유머 마케팅 상품이 나오는 시기예요. 시즌 한정 신상 입고 여부 확인이 필요한 타이밍이에요.</div>
+        </div>
+        <div class="ev-dot dot-day" style="box-sizing: border-box; margin: 0; padding: 0; flex-shrink: 0; width: 8px; height: 8px; border-radius: 9999px; background: #1ab715;"></div>
+      </div>
+
+      <div class="event-item" style="box-sizing: border-box; margin: 0; display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px;">
+        <div class="ev-date" style="box-sizing: border-box; margin: 0; padding: 0; flex-shrink: 0; text-align: center; min-width: 40px;">
+          <div class="ev-mo" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #565f6c;">APR</div>
+          <div class="ev-day" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 24px; font-weight: 700; color: #24282d; line-height: 1;">5</div>
+        </div>
+        <div class="ev-rule" style="box-sizing: border-box; margin: 0; padding: 0; width: 1px; height: 32px; background: #e9e9ea; flex-shrink: 0;"></div>
+        <div class="ev-info" style="box-sizing: border-box; margin: 0; padding: 0; flex: 1;">
+          <div class="ev-type" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; color: #565f6c; font-weight: 500;">기념일 · 식목일 (일)</div>
+          <div class="ev-name" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; font-weight: 400; color: #565f6c; line-height: 1.7;">일요일이라 나들이·야외 활동이 늘어나요. 도시락·음료·스낵 수요가 주중보다 크게 뛰는 패턴이에요.</div>
+        </div>
+        <div class="ev-dot dot-season" style="box-sizing: border-box; margin: 0; padding: 0; flex-shrink: 0; width: 8px; height: 8px; border-radius: 9999px; background: #fad232;"></div>
+      </div>
+
+      <div class="event-item" style="box-sizing: border-box; margin: 0; display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px;">
+        <div class="ev-date" style="box-sizing: border-box; margin: 0; padding: 0; flex-shrink: 0; text-align: center; min-width: 40px;">
+          <div class="ev-mo" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #565f6c;">APR</div>
+          <div class="ev-day" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 24px; font-weight: 700; color: #24282d; line-height: 1;">14</div>
+        </div>
+        <div class="ev-rule" style="box-sizing: border-box; margin: 0; padding: 0; width: 1px; height: 32px; background: #e9e9ea; flex-shrink: 0;"></div>
+        <div class="ev-info" style="box-sizing: border-box; margin: 0; padding: 0; flex: 1;">
+          <div class="ev-type" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; color: #565f6c; font-weight: 500;">데이 · 블랙데이 (화)</div>
+          <div class="ev-name" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; font-weight: 400; color: #565f6c; line-height: 1.7;">솔로 문화와 맞물려 짜장라면·짜파게티 등 짜장 관련 즉석식품 수요가 집중돼요.</div>
+        </div>
+        <div class="ev-dot dot-day" style="box-sizing: border-box; margin: 0; padding: 0; flex-shrink: 0; width: 8px; height: 8px; border-radius: 9999px; background: #1ab715;"></div>
+      </div>
+
+      <div class="event-item" style="box-sizing: border-box; margin: 0; display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: #f9f9fb; border: 1px solid #e9e9ea; border-radius: 8px;">
+        <div class="ev-date" style="box-sizing: border-box; margin: 0; padding: 0; flex-shrink: 0; text-align: center; min-width: 40px;">
+          <div class="ev-mo" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #565f6c;">MAY</div>
+          <div class="ev-day" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 24px; font-weight: 700; color: #24282d; line-height: 1;">1</div>
+        </div>
+        <div class="ev-rule" style="box-sizing: border-box; margin: 0; padding: 0; width: 1px; height: 32px; background: #e9e9ea; flex-shrink: 0;"></div>
+        <div class="ev-info" style="box-sizing: border-box; margin: 0; padding: 0; flex: 1;">
+          <div class="ev-type" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; color: #565f6c; font-weight: 500;">준공휴일 · 근로자의 날 (금)</div>
+          <div class="ev-name" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; font-weight: 400; color: #565f6c; line-height: 1.7;">오피스 상권은 직장인 휴무로 신선식품 매출이 크게 줄어요. 주택가·관광지는 평일 낮 방문이 느는 패턴이에요.</div>
+        </div>
+        <div class="ev-dot dot-holiday" style="box-sizing: border-box; margin: 0; padding: 0; flex-shrink: 0; width: 8px; height: 8px; border-radius: 9999px; background: #376ae2;"></div>
+      </div>
+
+    </div>
+
+    <div class="ev-legend" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; justify-content: flex-end; gap: 16px; margin-top: 16px; padding-top: 12px; border-top: 1px solid #e9e9ea;">
+      <div class="ev-legend-item" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; align-items: center; gap: 6px; font-size: 11px; color: #565f6c;"><div class="ev-legend-dot dot-holiday" style="box-sizing: border-box; margin: 0; padding: 0; width: 8px; height: 8px; border-radius: 9999px; flex-shrink: 0; background: #376ae2;"></div><span style="box-sizing: border-box; margin: 0; padding: 0;">법정공휴일</span></div>
+      <div class="ev-legend-item" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; align-items: center; gap: 6px; font-size: 11px; color: #565f6c;"><div class="ev-legend-dot dot-day" style="box-sizing: border-box; margin: 0; padding: 0; width: 8px; height: 8px; border-radius: 9999px; flex-shrink: 0; background: #1ab715;"></div><span style="box-sizing: border-box; margin: 0; padding: 0;">기념일·데이</span></div>
+      <div class="ev-legend-item" style="box-sizing: border-box; margin: 0; padding: 0; display: flex; align-items: center; gap: 6px; font-size: 11px; color: #565f6c;"><div class="ev-legend-dot dot-season" style="box-sizing: border-box; margin: 0; padding: 0; width: 8px; height: 8px; border-radius: 9999px; flex-shrink: 0; background: #fad232;"></div><span style="box-sizing: border-box; margin: 0; padding: 0;">시즌·절기</span></div>
+    </div>
+  </section>
+  <!-- /MODULE 5A -->
+
+
+  <!-- MODULE: 피드백 — 고정 / 수정 금지 -->
+  <section class="module mod-feedback" style="box-sizing: border-box; margin: 0; border-radius: 10px; padding: 24px; margin-top: 24px; text-align: center; background: transparent; border: none; margin-bottom: 0;">
+    <p class="fb-question" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 17px; font-weight: 600; color: #24282d; margin-bottom: 4px;">이번 주 뉴스레터가 발주에 도움이 됐나요?</p>
+    <p class="fb-sub" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 14px; color: #565f6c; margin-bottom: 12px;">간단한 피드백 남기고 다음 호도 <b style="box-sizing: border-box; margin: 0; padding: 0; color: #376ae2;">무료</b>로 받아보세요!</p>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; padding: 0; border-collapse: separate; border-spacing: 8px 0; margin: 0 -4px;">
+      <tr style="box-sizing: border-box; margin: 0; padding: 0;">
+        <td width="50%" valign="middle" style="box-sizing: border-box; margin: 0; background: #376ae2; border-radius: 8px; padding: 12px 16px; text-align: center;" align="center"><a href="https://forms.gle/t5JW4ijZCVfyZNWm9" target="_blank" style="box-sizing: border-box; margin: 0; padding: 0; color: #ffffff; font-size: 13px; font-weight: 600; text-decoration: none;">👍 도움이 됐어요</a></td>
+        <td width="50%" valign="middle" style="box-sizing: border-box; margin: 0; background: #ffffff; border: 1px solid #e9e9ea; border-radius: 8px; padding: 12px 16px; text-align: center;" align="center"><a href="https://forms.gle/BzZ7nCzWvPuVGDZR6" target="_blank" style="box-sizing: border-box; margin: 0; padding: 0; color: #565f6c; font-size: 13px; font-weight: 600; text-decoration: none;">👎 아직은 모르겠어요</a></td>
+      </tr>
+    </table>
+  </section>
+  <!-- /MODULE: 피드백 -->
+
+  </div>
+  <!-- /modules-body -->
+
+
+  <!-- MODULE 6: FOOTER — V1: 수신거부/개인정보 링크 제거 -->
+  <footer class="module mod-footer" style="box-sizing: border-box; margin: 0; border-radius: 10px; margin-top: 24px; background: #24282d; border: none; padding: 32px 24px; margin-bottom: 0;">
+
+    <svg class="ft-logo" viewBox="0 0 293 35" fill="none" xmlns="http://www.w3.org/2000/svg" style="box-sizing: border-box; margin: 0; padding: 0; display: block; height: 16px; width: auto; opacity: 0.6; margin-bottom: 4px;">
+      <path d="M273.774 34.464V8.87999H282.126L282.606 17.28L280.734 15.84C281.15 14.432 281.79 13.168 282.654 12.048C283.55 10.896 284.622 9.99999 285.87 9.35999C287.118 8.68799 288.43 8.35199 289.806 8.35199C290.382 8.35199 290.926 8.39999 291.438 8.49599C291.95 8.55999 292.43 8.65599 292.878 8.78399L290.43 18.672C290.078 18.448 289.582 18.256 288.942 18.096C288.302 17.904 287.614 17.808 286.878 17.808C286.238 17.808 285.662 17.92 285.15 18.144C284.638 18.336 284.206 18.624 283.854 19.008C283.502 19.392 283.23 19.856 283.038 20.4C282.846 20.912 282.75 21.52 282.75 22.224V34.464H273.774Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+      <path d="M257.985 34.944C255.073 34.944 252.561 34.384 250.449 33.264C248.337 32.112 246.705 30.544 245.553 28.56C244.401 26.544 243.825 24.256 243.825 21.696C243.825 19.776 244.145 18 244.785 16.368C245.425 14.736 246.321 13.328 247.473 12.144C248.625 10.928 249.985 9.99999 251.553 9.35999C253.153 8.68799 254.897 8.35199 256.785 8.35199C258.641 8.35199 260.321 8.67199 261.825 9.31199C263.361 9.95199 264.673 10.864 265.761 12.048C266.881 13.232 267.729 14.624 268.305 16.224C268.913 17.824 269.185 19.584 269.121 21.504L269.073 23.52H248.913L247.809 19.056H261.921L261.057 20.016V19.104C261.057 18.4 260.865 17.792 260.481 17.28C260.129 16.736 259.649 16.32 259.041 16.032C258.433 15.744 257.745 15.6 256.977 15.6C255.889 15.6 254.977 15.824 254.241 16.272C253.537 16.688 252.993 17.296 252.609 18.096C252.225 18.896 252.033 19.856 252.033 20.976C252.033 22.256 252.289 23.36 252.801 24.288C253.345 25.216 254.129 25.936 255.153 26.448C256.209 26.96 257.489 27.216 258.993 27.216C259.985 27.216 260.849 27.088 261.585 26.832C262.353 26.576 263.169 26.128 264.033 25.488L268.161 31.296C267.041 32.192 265.905 32.912 264.753 33.456C263.633 33.968 262.513 34.336 261.393 34.56C260.273 34.816 259.137 34.944 257.985 34.944Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+      <path d="M228.11 34.464V2.39996H237.038V34.464H228.11ZM223.886 16.464V8.87996H241.502V16.464H223.886Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+      <path d="M208.657 34.464V2.39996H217.585V34.464H208.657ZM204.433 16.464V8.87996H222.049V16.464H204.433Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+      <path d="M191.188 34.944C188.276 34.944 185.764 34.384 183.652 33.264C181.54 32.112 179.908 30.544 178.756 28.56C177.604 26.544 177.028 24.256 177.028 21.696C177.028 19.776 177.348 18 177.988 16.368C178.628 14.736 179.524 13.328 180.676 12.144C181.828 10.928 183.188 9.99999 184.756 9.35999C186.356 8.68799 188.1 8.35199 189.988 8.35199C191.844 8.35199 193.524 8.67199 195.028 9.31199C196.564 9.95199 197.876 10.864 198.964 12.048C200.084 13.232 200.932 14.624 201.508 16.224C202.116 17.824 202.388 19.584 202.324 21.504L202.276 23.52H182.116L181.012 19.056H195.124L194.26 20.016V19.104C194.26 18.4 194.068 17.792 193.684 17.28C193.332 16.736 192.852 16.32 192.244 16.032C191.636 15.744 190.948 15.6 190.18 15.6C189.092 15.6 188.18 15.824 187.444 16.272C186.74 16.688 186.196 17.296 185.812 18.096C185.428 18.896 185.236 19.856 185.236 20.976C185.236 22.256 185.492 23.36 186.004 24.288C186.548 25.216 187.332 25.936 188.356 26.448C189.412 26.96 190.692 27.216 192.196 27.216C193.188 27.216 194.052 27.088 194.788 26.832C195.556 26.576 196.372 26.128 197.236 25.488L201.364 31.296C200.244 32.192 199.108 32.912 197.956 33.456C196.836 33.968 195.716 34.336 194.596 34.56C193.476 34.816 192.34 34.944 191.188 34.944Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+      <path d="M150.976 34.464V0.864014H160.48V26.256H175.12V34.464H150.976Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+      <path d="M118.344 34.944C115.432 34.944 112.92 34.384 110.808 33.264C108.696 32.112 107.064 30.544 105.912 28.56C104.76 26.544 104.184 24.256 104.184 21.696C104.184 19.776 104.504 18 105.144 16.368C105.784 14.736 106.68 13.328 107.832 12.144C108.984 10.928 110.344 9.99999 111.912 9.35999C113.512 8.68799 115.256 8.35199 117.144 8.35199C119 8.35199 120.68 8.67199 122.184 9.31199C123.72 9.95199 125.032 10.864 126.12 12.048C127.24 13.232 128.088 14.624 128.664 16.224C129.272 17.824 129.544 19.584 129.48 21.504L129.432 23.52H109.272L108.168 19.056H122.28L121.416 20.016V19.104C121.416 18.4 121.224 17.792 120.84 17.28C120.488 16.736 120.008 16.32 119.4 16.032C118.792 15.744 118.104 15.6 117.336 15.6C116.248 15.6 115.336 15.824 114.6 16.272C113.896 16.688 113.352 17.296 112.968 18.096C112.584 18.896 112.392 19.856 112.392 20.976C112.392 22.256 112.648 23.36 113.16 24.288C113.704 25.216 114.488 25.936 115.512 26.448C116.568 26.96 117.848 27.216 119.352 27.216C120.344 27.216 121.208 27.088 121.944 26.832C122.712 26.576 123.528 26.128 124.392 25.488L128.52 31.296C127.4 32.192 126.264 32.912 125.112 33.456C123.992 33.968 122.872 34.336 121.752 34.56C120.632 34.816 119.496 34.944 118.344 34.944Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+      <path d="M84.1646 34.464V8.87999H92.5165L92.9966 17.28L91.1245 15.84C91.5406 14.432 92.1805 13.168 93.0445 12.048C93.9405 10.896 95.0126 9.99999 96.2606 9.35999C97.5086 8.68799 98.8205 8.35199 100.197 8.35199C100.773 8.35199 101.317 8.39999 101.829 8.49599C102.341 8.55999 102.821 8.65599 103.269 8.78399L100.821 18.672C100.469 18.448 99.9726 18.256 99.3326 18.096C98.6926 17.904 98.0046 17.808 97.2686 17.808C96.6286 17.808 96.0526 17.92 95.5406 18.144C95.0286 18.336 94.5966 18.624 94.2446 19.008C93.8926 19.392 93.6206 19.856 93.4286 20.4C93.2366 20.912 93.1405 21.52 93.1405 22.224V34.464H84.1646Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+      <path d="M65.1881 34.944C62.4681 34.944 60.0361 34.368 57.8921 33.216C55.7481 32.064 54.0681 30.496 52.8521 28.512C51.6361 26.528 51.0281 24.24 51.0281 21.648C51.0281 19.056 51.6361 16.768 52.8521 14.784C54.0681 12.8 55.7481 11.232 57.8921 10.08C60.0361 8.92799 62.4681 8.35199 65.1881 8.35199C67.9081 8.35199 70.3241 8.92799 72.4361 10.08C74.5801 11.232 76.2601 12.8 77.4761 14.784C78.6921 16.768 79.3001 19.056 79.3001 21.648C79.3001 24.24 78.6921 26.528 77.4761 28.512C76.2601 30.496 74.5801 32.064 72.4361 33.216C70.3241 34.368 67.9081 34.944 65.1881 34.944ZM65.1881 27.408C66.1481 27.408 67.0121 27.168 67.7801 26.688C68.5801 26.176 69.1881 25.488 69.6041 24.624C70.0521 23.728 70.2761 22.736 70.2761 21.648C70.2761 20.496 70.0521 19.488 69.6041 18.624C69.1881 17.76 68.5801 17.088 67.7801 16.608C67.0121 16.096 66.1481 15.84 65.1881 15.84C64.1961 15.84 63.3161 16.096 62.5481 16.608C61.7801 17.088 61.1721 17.776 60.7241 18.672C60.2761 19.536 60.0521 20.528 60.0521 21.648C60.0521 22.736 60.2761 23.728 60.7241 24.624C61.1721 25.488 61.7801 26.176 62.5481 26.688C63.3161 27.168 64.1961 27.408 65.1881 27.408Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+      <path d="M35.3134 34.464V2.39996H44.2414V34.464H35.3134ZM31.0894 16.464V8.87996H48.7054V16.464H31.0894Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+      <path d="M15.168 34.944C12.768 34.944 10.624 34.672 8.736 34.128C6.88 33.584 5.232 32.8 3.792 31.776C2.384 30.752 1.12 29.552 0 28.176L5.568 21.888C7.168 23.968 8.816 25.36 10.512 26.064C12.208 26.736 13.856 27.072 15.456 27.072C16.16 27.072 16.8 27.008 17.376 26.88C17.952 26.72 18.384 26.48 18.672 26.16C18.992 25.808 19.152 25.376 19.152 24.864C19.152 24.416 19.024 24.032 18.768 23.712C18.512 23.392 18.16 23.12 17.712 22.896C17.264 22.64 16.768 22.416 16.224 22.224C15.68 22.032 15.136 21.888 14.592 21.792C14.048 21.664 13.52 21.536 13.008 21.408C11.12 20.992 9.472 20.464 8.064 19.824C6.656 19.184 5.472 18.432 4.512 17.568C3.584 16.672 2.88 15.648 2.4 14.496C1.952 13.344 1.728 12.048 1.728 10.608C1.728 9.04 2.096 7.6 2.832 6.288C3.568 4.976 4.544 3.856 5.76 2.928C6.976 1.968 8.368 1.248 9.936 0.768002C11.536 0.256001 13.2 0 14.928 0C17.296 0 19.312 0.240002 20.976 0.720003C22.64 1.168 24.032 1.824 25.152 2.688C26.304 3.552 27.296 4.56 28.128 5.712L22.464 11.184C21.792 10.448 21.056 9.84 20.256 9.36C19.488 8.88 18.688 8.528 17.856 8.304C17.024 8.048 16.176 7.92 15.312 7.92C14.512 7.92 13.808 8 13.2 8.16C12.624 8.32 12.176 8.56 11.856 8.88C11.536 9.168 11.376 9.568 11.376 10.08C11.376 10.528 11.552 10.928 11.904 11.28C12.256 11.6 12.704 11.872 13.248 12.096C13.792 12.32 14.368 12.512 14.976 12.672C15.616 12.8 16.192 12.912 16.704 13.008C18.464 13.36 20.064 13.824 21.504 14.4C22.976 14.944 24.256 15.648 25.344 16.512C26.432 17.344 27.264 18.368 27.84 19.584C28.416 20.8 28.704 22.224 28.704 23.856C28.704 26.256 28.096 28.288 26.88 29.952C25.696 31.584 24.08 32.832 22.032 33.696C20.016 34.528 17.728 34.944 15.168 34.944Z" fill="white" style="box-sizing: border-box; margin: 0; padding: 0;"/>
+    </svg>
+    <div class="ft-tagline" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; color: rgba(255,255,255,0.38); margin-bottom: 24px;">편의점 트렌드 인사이트 뉴스레터</div>
+
+    <hr class="ft-rule" style="box-sizing: border-box; padding: 0; border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 0 0 16px;">
+
+    <div class="ft-legal" style="box-sizing: border-box; margin: 0; padding: 0; font-size: 11px; color: rgba(255,255,255,0.22); line-height: 1.85;">
+      SAAI 스토어레터는 발주·운영 판단을 돕는 참고 자료예요.<br style="box-sizing: border-box; margin: 0; padding: 0;">
+      StoreInsight · StoreCare · StoreAgent
+    </div>
+  </footer>
+  <!-- /MODULE 6: FOOTER -->
+
+</div><!-- /email-container -->
+</div><!-- /email-wrapper -->
+
+</body>
+</html>
