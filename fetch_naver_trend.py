@@ -51,8 +51,8 @@ def fetch_trend(keyword_groups, start_date, end_date):
     return res.json().get("results", [])
 
 
-def judge_direction(data_points):
-    """최근 7일 vs 이전 7일 평균 비교로 방향 판단"""
+def calc_change(data_points):
+    """최근 7일 vs 이전 7일 평균 비교 → 변화율(%) 반환"""
     if len(data_points) < 14:
         recent = data_points[-7:] if len(data_points) >= 7 else data_points
         earlier = data_points[:-7] if len(data_points) > 7 else data_points[:len(data_points)//2]
@@ -64,16 +64,11 @@ def judge_direction(data_points):
     earlier_avg = sum(d["ratio"] for d in earlier) / len(earlier) if earlier else 0
 
     if earlier_avg == 0:
-        return "상승" if recent_avg > 0 else "유지", recent_avg, earlier_avg
-
-    change = (recent_avg - earlier_avg) / earlier_avg * 100
-
-    if change >= 20:
-        return "상승", recent_avg, earlier_avg
-    elif change <= -20:
-        return "하락", recent_avg, earlier_avg
+        change_pct = 100.0 if recent_avg > 0 else 0.0
     else:
-        return "유지", recent_avg, earlier_avg
+        change_pct = (recent_avg - earlier_avg) / earlier_avg * 100
+
+    return round(change_pct, 1), round(recent_avg, 2), round(earlier_avg, 2)
 
 
 def judge_scale(keyword_avg, baseline_avg):
@@ -81,6 +76,12 @@ def judge_scale(keyword_avg, baseline_avg):
 
     편의점 신상/트렌드 상품은 떡볶이 같은 스테디셀러보다 검색량이 훨씬 적다.
     떡볶이의 30%만 되어도 대중 인지가 충분한 수준.
+
+    등급 → 뉴스레터 배지 매핑:
+      HOT  (30%+)  → 초록 pill  .trend-status.up   — 이미 많이 찾는 중
+      주목 (10~29%) → 노란 pill  .trend-status.keep — 신상품 치고 검색 잡히는 수준
+      초기 (3~9%)  → 노란 pill  .trend-status.keep — 검색 시작 단계
+      (3% 미만)    → 배지 없음                      — 본문에서 맥락 설명
     """
     if baseline_avg == 0:
         return "확인불가", 0
@@ -88,15 +89,15 @@ def judge_scale(keyword_avg, baseline_avg):
     ratio = keyword_avg / baseline_avg * 100  # 떡볶이 = 100% 기준
 
     if ratio >= 30:
-        return "트렌드", round(ratio, 1)
+        return "HOT", round(ratio, 1)
     elif ratio >= 10:
         return "주목", round(ratio, 1)
     elif ratio >= 3:
-        return "성장중", round(ratio, 1)
+        return "초기", round(ratio, 1)
     else:
-        return "니치", round(ratio, 1)
+        return "", round(ratio, 1)
 
-SCALE_ICONS = {"트렌드": "🔥", "주목": "📈", "성장중": "🌱", "니치": "·", "확인불가": "?"}
+SCALE_ICONS = {"HOT": "🔥", "주목": "📈", "초기": "🌱", "": "·", "확인불가": "?"}
 
 
 def run_individual(keyword_groups, baseline=None):
@@ -111,14 +112,11 @@ def run_individual(keyword_groups, baseline=None):
     # 기준 키워드가 입력 목록에 있으면 제외
     keyword_groups = [g for g in keyword_groups if g["name"] != baseline]
 
-    names = [g["name"] for g in keyword_groups]
-    api_calls_batches = (len(keyword_groups) + 3) // 4
-    api_calls_direction = len(keyword_groups)
-    total_calls = api_calls_batches + api_calls_direction
+    api_calls = (len(keyword_groups) + 3) // 4
 
     print(f"[기준선 비교 모드] 기준: {baseline}")
     print(f"조회 기간: {start_date} ~ {end_date}")
-    print(f"키워드 {len(keyword_groups)}개 → API {total_calls}회 호출 (비교 {api_calls_batches} + 방향 {api_calls_direction})")
+    print(f"키워드 {len(keyword_groups)}개 → API {api_calls}회 호출")
 
     # 그룹 키워드 표시
     for g in keyword_groups:
@@ -126,13 +124,12 @@ def run_individual(keyword_groups, baseline=None):
             print(f"  📦 {g['name']} ← 합산: {', '.join(g['keywords'])}")
     print()
 
-    # --- Step 1: 떡볶이와 함께 비교해서 규모 판단 ---
-    scale_map = {}  # name → (scale_label, ratio)
+    all_results = []
 
     for i in range(0, len(keyword_groups), 4):
         batch = keyword_groups[i:i+4]
         batch_names = [g["name"] for g in batch]
-        print(f"  --- 규모 비교 그룹 {i//4 + 1}: {baseline} vs {', '.join(batch_names)} ---")
+        print(f"  --- 그룹 {i//4 + 1}: {baseline} vs {', '.join(batch_names)} ---")
 
         try:
             groups = [{"groupName": baseline, "keywords": [baseline]}]
@@ -153,75 +150,42 @@ def run_individual(keyword_groups, baseline=None):
                 if name == baseline:
                     continue
                 data_points = r.get("data", [])
-                recent = data_points[-7:] if len(data_points) >= 7 else data_points
-                kw_avg = sum(d["ratio"] for d in recent) / len(recent) if recent else 0
-                scale, ratio = judge_scale(kw_avg, baseline_avg)
-                scale_map[name] = (scale, ratio)
+                scale, ratio = judge_scale(
+                    sum(d["ratio"] for d in (data_points[-7:] if len(data_points) >= 7 else data_points)) / max(len(data_points[-7:] if len(data_points) >= 7 else data_points), 1),
+                    baseline_avg,
+                )
+                change_pct, recent_avg, earlier_avg = calc_change(data_points)
+
+                # 해당 그룹 찾기
+                g = next((g for g in batch if g["name"] == name), None)
+                group_note = f" (합산: {', '.join(g['keywords'])})" if g and len(g["keywords"]) > 1 else ""
+
                 icon = SCALE_ICONS[scale]
-                print(f"    {icon} {name}: {scale} ({ratio:.1f}% vs {baseline})")
+                change_str = f"+{change_pct}%" if change_pct >= 0 else f"{change_pct}%"
+                print(f"    {icon} {name}: {scale} ({ratio:.1f}% vs {baseline}, 주간 {change_str}){group_note}")
 
-        except Exception as e:
-            print(f"  ❌ 규모 비교 오류: {e}")
-            for g in batch:
-                scale_map[g["name"]] = ("확인불가", 0)
-
-    # --- Step 2: 개별 그룹 호출로 방향 판단 (자체 스케일) ---
-    print(f"\n  --- 방향 판단 (개별 호출) ---")
-    all_results = []
-
-    for g in keyword_groups:
-        name = g["name"]
-        try:
-            groups = [{"groupName": name, "keywords": g["keywords"]}]
-            results = fetch_trend(groups, start_date, end_date)
-            r = results[0] if results else None
-
-            if not r:
-                scale, ratio = scale_map.get(name, ("확인불가", 0))
-                print(f"  ? {name}: 데이터 없음")
                 all_results.append({
-                    "keyword": name, "search_terms": g["keywords"],
-                    "direction": "확인불가",
-                    "badge": "? 확인불가",
-                    "scale": scale, "baseline_ratio": ratio,
+                    "keyword": name,
+                    "search_terms": g["keywords"] if g else [name],
+                    "scale": scale,
+                    "baseline_ratio": ratio,
+                    "change_pct": change_pct,
                     "baseline": baseline,
-                    "recent_7d_avg": 0, "earlier_7d_avg": 0, "data": [],
+                    "recent_7d_avg": recent_avg,
+                    "earlier_7d_avg": earlier_avg,
+                    "data": data_points,
                 })
-                continue
 
-            data_points = r.get("data", [])
-            direction, recent_avg, earlier_avg = judge_direction(data_points)
-            scale, ratio = scale_map.get(name, ("확인불가", 0))
-
-            dir_badge = {"상승": "▲", "하락": "▼", "유지": "—"}[direction]
-            scale_icon = SCALE_ICONS[scale]
-            group_note = f" (합산: {', '.join(g['keywords'])})" if len(g["keywords"]) > 1 else ""
-            print(f"  {scale_icon}{dir_badge} {name}: {scale}({ratio:.0f}%) {direction} (최근7일 {recent_avg:.1f} / 이전7일 {earlier_avg:.1f}){group_note}")
-
-            all_results.append({
-                "keyword": name,
-                "search_terms": g["keywords"],
-                "direction": direction,
-                "badge": f"{dir_badge} {direction}",
-                "scale": scale,
-                "baseline_ratio": ratio,
-                "baseline": baseline,
-                "recent_7d_avg": round(recent_avg, 2),
-                "earlier_7d_avg": round(earlier_avg, 2),
-                "data": data_points,
-            })
         except Exception as e:
-            print(f"  ❌ {name}: {e}")
-            scale, ratio = scale_map.get(name, ("확인불가", 0))
-            all_results.append({
-                "keyword": name, "search_terms": g["keywords"],
-                "direction": "확인불가",
-                "badge": "? 확인불가",
-                "scale": scale, "baseline_ratio": ratio,
-                "baseline": baseline,
-                "recent_7d_avg": 0, "earlier_7d_avg": 0, "data": [],
-                "error": str(e),
-            })
+            print(f"  ❌ 오류: {e}")
+            for g in batch:
+                all_results.append({
+                    "keyword": g["name"], "search_terms": g["keywords"],
+                    "scale": "확인불가", "baseline_ratio": 0,
+                    "change_pct": 0, "baseline": baseline,
+                    "recent_7d_avg": 0, "earlier_7d_avg": 0, "data": [],
+                    "error": str(e),
+                })
 
     return all_results, start_date, end_date
 
