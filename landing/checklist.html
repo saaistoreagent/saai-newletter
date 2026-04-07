@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>이번주 발주 체크리스트 — STORE LETTER</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+:root {
+  --blue-500:#376ae2; --blue-hover:#1e54d1; --blue-50:#ebf0fc; --blue-25:#f7f9fd;
+  --grey-25:#f9f9fb; --grey-50:#e9e9ea; --grey-100:#d9dbdd; --grey-300:#8e949d;
+  --grey-500:#565f6c; --grey-700:#3d434d; --grey-900:#24282d; --white:#fff;
+  --red-500:#e05959; --red-50:#fceeee; --green-500:#1ab715; --green-50:#e8f8e8;
+  --yellow-500:#fad232; --yellow-50:#fffbeb;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Pretendard',sans-serif;background:var(--grey-25);color:var(--grey-900);min-height:100dvh;-webkit-font-smoothing:antialiased}
+
+/* ── header ── */
+.hdr{background:var(--white);padding:16px 20px 14px;border-bottom:1px solid var(--grey-50);position:sticky;top:0;z-index:10}
+.hdr-row{display:flex;justify-content:space-between;align-items:center}
+.hdr-logo{font-size:11px;font-weight:700;color:var(--blue-500);letter-spacing:.08em}
+.hdr-btns{display:flex;gap:6px}
+.hdr-btn{font-size:11px;padding:5px 10px;border-radius:6px;border:1px solid var(--grey-50);background:var(--white);color:var(--grey-300);cursor:pointer;font-family:Pretendard,sans-serif}
+.hdr-btn.active{border-color:var(--blue-500);color:var(--blue-500)}
+.hdr-title{font-size:19px;font-weight:700;line-height:28px;margin-top:10px}
+.hdr-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.hdr-chip{font-size:11px;font-weight:600;padding:4px 10px;border-radius:12px;background:var(--grey-25);color:var(--grey-500)}
+.hdr-chip.brand{background:var(--blue-50);color:var(--blue-500)}
+.hdr-week{font-size:11px;color:var(--grey-300);margin-top:6px}
+
+/* ── pro banner ── */
+.pro-banner{margin:24px 20px 8px;padding:14px;background:linear-gradient(135deg,#376ae2 0%,#5f88e8 100%);border-radius:10px;display:flex;justify-content:space-between;align-items:center}
+.pro-banner-text{font-size:13px;color:rgba(255,255,255,.9);font-weight:500;line-height:20px}
+.pro-banner-text b{color:#fff;font-weight:700}
+.pro-btn{padding:8px 14px;border:none;border-radius:6px;background:#fff;color:var(--blue-500);font-size:12px;font-weight:700;cursor:pointer;font-family:Pretendard,sans-serif;white-space:nowrap;margin-left:12px;flex-shrink:0}
+
+/* ── section ── */
+.sec{padding:0 20px}
+.sec-hdr{padding:24px 0 12px;display:flex;align-items:center;gap:8px}
+.sec-icon{font-size:16px}
+.sec-title{font-size:14px;font-weight:700;color:var(--grey-900)}
+.sec-count{font-size:12px;color:var(--grey-300);font-weight:500;margin-left:4px}
+
+/* ── card ── */
+.card{background:var(--white);border:1px solid var(--grey-50);border-radius:10px;padding:14px 16px;margin-bottom:8px}
+.card-head{display:flex;justify-content:space-between;align-items:center}
+.card-name{font-size:15px;font-weight:700;line-height:22px;flex:1;margin-right:8px}
+.badge{font-size:12px;font-weight:700;padding:4px 10px;border-radius:14px;white-space:nowrap}
+.b-strong{background:var(--green-50);color:var(--green-500)}
+.b-recommend{background:var(--yellow-50);color:#b7791f}
+.b-normal{background:var(--grey-25);color:var(--grey-500)}
+.b-skip{background:var(--red-50);color:var(--red-500)}
+.b-mega{background:#f3e5f5;color:#7b1fa2}
+
+.card-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.t{font-size:10px;font-weight:600;padding:3px 8px;border-radius:10px}
+.t-brand{background:var(--blue-50);color:var(--blue-500)}
+.t-price{background:var(--grey-25);color:var(--grey-500)}
+.t-hot{background:#fff0e0;color:#e65100}
+.t-up{background:var(--green-50);color:var(--green-500)}
+
+.card-trend{font-size:12px;font-weight:600;color:var(--grey-700);margin-top:10px;line-height:20px}
+.card-trend.falling{color:var(--red-500)}
+.card-trend.stable{color:var(--grey-300)}
+
+/* 미니 막대 차트 */
+.mini-chart-wrap{margin-top:10px;padding:10px 12px 6px;background:var(--grey-25);border-radius:8px}
+.mini-status{font-size:11px;font-weight:600;margin-bottom:6px}
+.mini-status.up{color:var(--blue-500)}
+.mini-status.peak{color:#e65100}
+.mini-status.down{color:var(--red-500)}
+.mini-status.flat{color:var(--grey-300)}
+.mini-bars{display:flex;align-items:flex-end;gap:6px;height:28px}
+.mini-bar{flex:1;border-radius:3px 3px 0 0;min-height:3px}
+.mini-labels{display:flex;gap:6px;margin-top:3px}
+.mini-labels span{flex:1;text-align:center;font-size:9px;color:var(--grey-300)}
+
+/* 입점 알림 배너 */
+.entry-banner{background:var(--green-50);border:1px solid #c8eec8;border-radius:8px;padding:10px 12px;margin-top:8px;font-size:12px;color:var(--green-500);font-weight:600;line-height:20px}
+
+/* insight (pro) */
+.card-insight{margin-top:12px;padding:14px 16px;background:var(--grey-25);border-radius:8px;font-size:13px;line-height:21px;color:var(--grey-600)}
+.card-insight .hi{color:var(--grey-900);font-weight:600}
+.card-brand{background:var(--blue-25);border:1px solid var(--blue-50);border-radius:8px;padding:12px;margin-top:8px;font-size:12px;line-height:20px;color:var(--grey-500)}
+.card-brand strong{color:var(--blue-500);font-weight:700;font-size:13px}
+.card-warn{font-size:11px;color:#e65100;margin-top:8px;line-height:18px}
+.card-excl{font-size:12px;color:var(--red-500);margin-top:8px;font-weight:500;line-height:20px}
+
+/* lock */
+.lk{position:relative}
+.lk-blur{filter:blur(5px);pointer-events:none;user-select:none}
+.lk-over{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.7);border-radius:8px;cursor:pointer}
+.lk-over span{font-size:13px;font-weight:700;color:var(--blue-500)}
+
+/* mega track btn */
+.track-btn{margin-top:10px;width:100%;padding:9px;border:1px solid var(--grey-50);border-radius:8px;background:var(--white);font-size:12px;font-weight:500;cursor:pointer;font-family:Pretendard,sans-serif;color:var(--grey-500);transition:all .15s}
+.track-btn:hover{background:var(--grey-25)}
+.track-btn.on{border-color:var(--blue-500);background:var(--blue-50);color:var(--blue-500)}
+
+/* ── feedback ── */
+.fb-sec{padding:20px;margin-top:4px}
+.fb-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.fb-sub{font-size:11px;color:var(--grey-300);margin-bottom:14px;line-height:18px}
+.fb-row{padding:12px 0;border-bottom:1px solid var(--grey-50)}
+.fb-row:last-of-type{border-bottom:none}
+.fb-name{font-size:15px;font-weight:700;margin-bottom:10px;text-align:center;padding:8px 0 4px;color:var(--grey-900)}
+.fb-btns{display:flex;gap:8px}
+.fb-btn{flex:1;padding:9px 0;border-radius:8px;border:1px solid var(--grey-50);background:var(--white);font-size:12px;font-weight:500;cursor:pointer;font-family:Pretendard,sans-serif;color:var(--grey-500);transition:all .12s;text-align:center}
+.fb-btn:hover{background:var(--grey-25)}
+.fb-btn.on{border-color:var(--blue-500);background:var(--blue-50);color:var(--blue-500)}
+.fb-back{flex:0;padding:9px 12px;border-color:transparent;color:var(--grey-300)}
+
+.footer{text-align:center;padding:24px 20px;font-size:11px;color:var(--grey-300);line-height:18px}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-row">
+    <div class="hdr-logo">STORE LETTER</div>
+    <div class="hdr-btns">
+      <button class="hdr-btn" id="edit-btn">매장 변경</button>
+      <button class="hdr-btn" id="tier-btn"></button>
+    </div>
+  </div>
+  <div class="hdr-title">발주 체크리스트</div>
+  <div class="hdr-chips" id="h-chips"></div>
+  <div id="h-week-tabs" style="display:flex;gap:8px;margin-top:12px"></div>
+  <div id="h-week" style="font-size:11px;color:var(--grey-300);margin-top:6px"></div>
+  <select id="h-week-select" style="display:none"></select>
+</div>
+
+<div id="content"></div>
+
+<div class="footer">
+  매출 경향은 내부 분석 기반으로, 상권에 따라 다를 수 있어요<br>
+  STORE LETTER · SAAI
+</div>
+
+<script>
+let profile=JSON.parse(localStorage.getItem("store_profile")||"null");
+let isPro=JSON.parse(localStorage.getItem("is_premium")||"false");
+let DATA=null,PATTERNS=null;
+let fb=JSON.parse(localStorage.getItem("feedbacks")||"{}");
+let trk=JSON.parse(localStorage.getItem("trackings")||"{}");
+
+const TZ={"도시락/간편식":["tz_11_14","tz_06_11"],"음료/커피":["tz_06_11","tz_11_14","tz_14_17"],"스낵/과자":["tz_14_17","tz_17_21"],"주류":["tz_17_21","tz_21_24"],"라면/즉석조리":["tz_17_21","tz_21_24"],"아이스크림":["tz_14_17","tz_17_21"],"빵/디저트":["tz_11_14","tz_14_17"],"디저트":["tz_11_14","tz_14_17"],"콜라보/한정판":["tz_14_17","tz_17_21"],"시즌/이벤트":["tz_14_17","tz_17_21"],"생활용품":["tz_17_21","tz_21_24"]};
+
+function score(p,area,prof){
+  const pa=PATTERNS?.[area];if(!pa)return 50;let s=0,w=0;
+  const at=p.target_age||"전연령";let a2=50;
+  if(at!=="전연령"){const ak={10:"age_10",20:"age_20",30:"age_30",40:"age_40",50:"age_50",60:"age_60"};let pc=0;for(const[c,k]of Object.entries(ak)){if(at.includes(String(c)))pc+=pa[k]}a2=Math.min(100,pc*2)}
+  s+=a2*40;w+=40;
+  const gt=p.target_gender||"전체";let g2=50;
+  if(gt==="여성")g2=Math.min(100,pa.female*2);else if(gt==="남성")g2=Math.min(100,pa.male*2);
+  s+=g2*20;w+=20;
+  const tz=TZ[p.category]||["tz_14_17","tz_17_21"];
+  s+=Math.min(100,tz.reduce((a,k)=>a+(pa[k]||0),0)*2)*20;w+=20;
+  let wk=50;if(["콜라보/한정판","아이스크림","시즌/이벤트"].includes(p.category))wk=Math.min(100,pa.weekend*3);
+  else if(["도시락/간편식","음료/커피"].includes(p.category))wk=Math.min(100,pa.weekday*1.2);
+  s+=wk*10;w+=10;
+  const vl={high:80,medium:50,low:30}[p.viral||"low"]||50;
+  s+=(p.viral==="high"&&pa.age_20>25?95:vl)*10;w+=10;
+  let base=Math.round(s/w);
+  if(prof){let b=0;const ma=prof.customers||[];
+    if(at!=="전연령"&&ma.length){b+=ma.some(c=>at.includes(c.replace("대","").replace("+","")))?3:-3}
+    const mg=prof.gender||"비슷";
+    if(gt!=="전체"&&mg!=="비슷"){if((gt==="여성"&&mg==="여성 위주")||(gt==="남성"&&mg==="남성 위주"))b+=2;else b-=2}
+    if(prof.foreign==="많음"&&p.category==="시즌/이벤트")b+=2;
+    base=Math.max(0,Math.min(100,base+b))}
+  return base;
+}
+
+function grade(sc){
+  if(sc>=80)return["강추","b-strong"];if(sc>=60)return["추천","b-recommend"];
+  if(sc>=40)return["보통","b-normal"];return["스킵","b-skip"];
+}
+
+function render(){
+  if(!profile){window.location.href="index.html";return}
+  const el=document.getElementById("content"),area=profile.area,brand=profile.brand;
+
+  // header chips
+  document.getElementById("h-chips").innerHTML=
+    `<span class="hdr-chip brand">${brand}</span><span class="hdr-chip">${area}</span>`+
+    (profile.customers||[]).map(c=>`<span class="hdr-chip">${c}</span>`).join("")+
+    (profile.gender&&profile.gender!=="비슷"?`<span class="hdr-chip">${profile.gender}</span>`:"");
+  document.getElementById("h-week").textContent=DATA?.week?`전국 편의점 매출 데이터 기반`:"";
+  const tb=document.getElementById("tier-btn");
+  tb.textContent=isPro?"PRO":"FREE";tb.className="hdr-btn"+(isPro?" active":"");
+
+  if(!DATA?.products){el.innerHTML='<div style="text-align:center;padding:60px;color:var(--grey-300)">데이터를 불러오지 못했어요</div>';return}
+
+  const items=DATA.products.map(p=>{
+    const rawSc=score(p,area,profile);
+    const sc=p.score_override?.[area]??rawSc;
+    const[g,gc]=grade(sc);
+    const act=p.action?.[area];
+    const ins=typeof act==="object"?act.insight||[act.why,act.do,act.tip].filter(Boolean).join(" "):act||"";
+    const bi=p.by_brand?.[brand]||null;
+    const excl=p.store_exclusive&&p.store!==brand;
+    return{...p,sc,g,gc,ins,bi,excl};
+  });
+
+  // 다른 브랜드 단독 상품은 아예 제외
+  const visible=items.filter(p=>!p.excl);
+  const must=visible.filter(p=>p.sc>=80&&p.section==="convenience");
+  const rec=visible.filter(p=>p.sc>=60&&p.sc<80&&p.section==="convenience");
+  const skip=visible.filter(p=>p.sc<60&&p.section==="convenience");
+  const mega=visible.filter(p=>p.section==="mega");
+
+  let h="";
+
+  if(!isPro){
+    h+=`<div class="pro-banner">
+      <div class="pro-banner-text"><b>PRO</b>로 상세 분석 보기</div>
+      <button class="pro-btn" onclick="isPro=true;localStorage.setItem('is_premium','true');render()">월 1,000원</button>
+    </div>`;
+  }
+
+  function sec(title,icon,list,detail){
+    if(!list.length)return"";
+    let s=`<div class="sec"><div class="sec-hdr"><span class="sec-icon">${icon}</span><span class="sec-title">${title}</span><span class="sec-count">${list.length}개</span></div>`;
+    list.forEach(p=>{
+      const td=p.trend_detail;
+      const lvl=td?.level||"stable";
+      // 트렌드: 막대 차트
+      let trendHtml="";
+      if(td?.history?.length){
+        const h=td.history;
+        const max=Math.max(...h,1);
+
+        const recent=h[h.length-1], prev=h[h.length-2]||0, oldest=h[0]||0;
+        let status="", sc="";
+        if(recent>prev*1.3 && prev>oldest){ status="계속 오르는 중"; sc="up"; }
+        else if(recent>prev*1.5){ status="급등 중"; sc="up"; }
+        else if(recent>=prev*0.9 && recent<=prev*1.1 && recent>oldest*2){ status="피크 구간일 수 있어요"; sc="peak"; }
+        else if(recent<prev*0.8){ status="꺾이기 시작했어요"; sc="down"; }
+        else{ status="완만하게 상승 중"; sc="flat"; }
+
+        const color=sc==="up"?"var(--blue-500)":sc==="peak"?"#e65100":sc==="down"?"var(--red-500)":"var(--grey-200)";
+        const bars=h.map((v,i)=>{
+          const pct=Math.round(v/max*100);
+          const isLast=i===h.length-1;
+          return `<div class="mini-bar" style="height:${Math.max(10,pct)}%;background:${isLast?color:"var(--grey-100)"}"></div>`;
+        }).join("");
+        const labels=(td.weeks||[]).map(w=>`<span>${w}</span>`).join("");
+
+        trendHtml=`<div class="mini-chart-wrap">
+          <div class="mini-status ${sc}">검색 트렌드 · ${status}</div>
+          <div class="mini-bars">${bars}</div>
+          <div class="mini-labels">${labels}</div>
+        </div>`;
+      } else if(td?.summary){
+        trendHtml=`<div class="card-trend ${lvl}">${td.summary}</div>`;
+      }
+
+      // 입점 알림 배너 (이전에 mega였다가 convenience로 바뀐 상품)
+      const entryBanner = p.prev_section==="mega"&&p.section==="convenience"
+        ? `<div class="entry-banner">🎉 편의점에 입점됐어요! ${trk[p.keyword]?"알림 신청하셨던 상품이에요.":""}</div>` : "";
+
+      // insight: 줄글 → 개조식 포맷
+      let insHtml="";
+      if(p.ins){
+        const sentences=p.ins.split(/(?<=요\.)\s*/).filter(s=>s.trim());
+        if(sentences.length>1){
+          insHtml=sentences.map((s,i)=>{
+            s=s.trim();
+            if(!s.endsWith("요.") && !s.endsWith("요")) s=s;
+            return `<div style="display:flex;gap:8px;align-items:flex-start;${i>0?"margin-top:8px":""}"><span style="color:var(--grey-300);flex-shrink:0;margin-top:2px">·</span><span>${i===0?`<span class="hi">${s}</span>`:s}</span></div>`;
+          }).join("");
+        }else{
+          insHtml=`<span class="hi">${p.ins}</span>`;
+        }
+      }
+
+      const biParts=[];
+      if(p.bi?.product_name) biParts.push(`<strong>${brand} — ${p.bi.product_name}</strong>`);
+      if(p.bi?.items) biParts.push(p.bi.items);
+      if(p.bi?.release&&p.bi.release!=="출시 중") biParts.push(p.bi.release);
+      if(p.bi?.home_games_apr) biParts.push(`홈경기: ${p.bi.home_games_apr}`);
+      if(p.bi?.note) biParts.push(`<span style="color:var(--grey-300)">${p.bi.note}</span>`);
+      const brandHtml=biParts.length?`<div class="card-brand">${biParts.join("<br>")}</div>`
+        :p.bi&&!p.bi.product_name?`<div class="card-brand" style="color:var(--grey-300)">${p.bi.note||"콜라보 미확인"}</div>`:"";
+
+      const proBlock=detail&&isPro?`<div class="card-insight">${insHtml}</div>${brandHtml}${p.warning&&!p.store_exclusive?`<div class="card-warn">${p.warning}</div>`:""}`
+        :detail&&!isPro?`<div class="lk"><div class="lk-blur"><div class="card-insight">${insHtml||"이 상권의 발주 판단과 리스크 분석"}</div></div><div class="lk-over" onclick="isPro=true;localStorage.setItem('is_premium','true');render()"><span>상세 분석 보기</span></div></div>`:"";
+
+      const megaBtn=p.section==="mega"&&p.category!=="시즌/이벤트"?`<button class="track-btn${trk[p.keyword]?" on":""}" onclick="toggleTrk('${p.keyword}')">${trk[p.keyword]?"🔔 알림 신청 완료":"🔔 입점되면 알려주세요"}</button>`:"";
+
+      s+=`<div class="card">
+        <div class="card-head">
+          <div class="card-name">${p.keyword}</div>
+          <div class="badge ${p.section==="mega"?"b-mega":p.gc}">${p.section==="mega"?(p.trend_detail?.level==="explosive"?"주목":(p.trend_detail?.level==="rising"?"관심":"정보부족")):(isPro?p.sc+"점 ":"")+(p.g)}</div>
+        </div>
+        <div class="card-tags">
+          ${p.store?`<span class="t t-brand">${p.store}${p.store_exclusive?" 단독":""}</span>`:""}
+          ${p.price?`<span class="t t-price">${p.price.toLocaleString()}원</span>`:""}
+          ${td?.level==="explosive"?'<span class="t t-hot">폭발</span>':td?.level==="rising"?'<span class="t t-up">상승</span>':""}
+        </div>
+        ${entryBanner}
+        ${trendHtml}
+        ${proBlock}
+        ${megaBtn}
+      </div>`;
+    });
+    return s+"</div>";
+  }
+
+  // 입점 알림 섹션 — 알림 신청했던 상품이 입점됐을 때 맨 위에
+  const newEntries=visible.filter(p=>p.prev_section==="mega"&&p.section==="convenience");
+  if(newEntries.length){
+    h+=`<div class="sec"><div class="sec-hdr"><span class="sec-icon">🎉</span><span class="sec-title">입점 소식</span><span class="sec-count">${newEntries.length}개</span></div>`;
+    newEntries.forEach(p=>{
+      const wasTracked=trk[p.keyword];
+      h+=`<div style="background:var(--green-50);border:1px solid #c8eec8;border-radius:10px;padding:14px 16px;margin-bottom:8px">
+        <div style="font-size:14px;font-weight:700;color:var(--green-500);margin-bottom:6px">${p.keyword} — 편의점 입점!</div>
+        ${wasTracked?`<div style="font-size:12px;color:var(--green-500);margin-bottom:6px">알림 신청하셨던 상품이에요</div>`:""}
+        <div style="font-size:13px;color:var(--grey-700);line-height:21px">${p.store?p.store+" · ":""}${p.price?p.price.toLocaleString()+"원 · ":""}${p.trend_detail?.summary||""}</div>
+        <div style="font-size:12px;color:var(--grey-500);margin-top:6px;line-height:20px">아래 체크리스트에서 상세 분석을 확인하세요</div>
+      </div>`;
+    });
+    h+="</div>";
+  }
+
+  h+=sec("이번주 꼭 발주","✅",must,true);
+  h+=sec("반응 보고 결정","🤔",rec,true);
+  h+=sec("보류 / 스킵","⏸️",skip,true);
+  h+=sec("메가트렌드 — 입점 대기","🔮",mega,true);
+
+  // 피드백
+  const fbList=visible.filter(p=>p.section==="convenience");
+  if(fbList.length){
+    h+=`<div class="fb-sec"><div class="fb-title">이번주 발주 피드백</div><div class="fb-sub">같은 상권 점주들의 실전 데이터를 만들어가고 있어요</div>`;
+    fbList.forEach(p=>{
+      const k=DATA.week+"_"+p.keyword;
+      const f=fb[k]||{};
+      const st=f.stage||"",rs=f.result||"";
+      let btns;
+      if(!st){
+        btns=`<div class="fb-btns">
+          <button class="fb-btn" onclick="fbStage('${k}','selling')">이미 발주했어요</button>
+          <button class="fb-btn" onclick="fbStage('${k}','not_yet')">아직 안 했어요</button>
+        </div>`;
+      }else if(st==="selling"){
+        btns=`<div class="fb-btns">
+          <button class="fb-btn${rs==="good"?" on":""}" onclick="fbResult('${k}','good')">잘 나가요</button>
+          <button class="fb-btn${rs==="ok"?" on":""}" onclick="fbResult('${k}','ok')">보통이에요</button>
+          <button class="fb-btn${rs==="bad"?" on":""}" onclick="fbResult('${k}','bad')">잘 안 나가요</button>
+          <button class="fb-btn fb-back" onclick="fbStage('${k}','')">↩</button>
+        </div>`;
+      }else{
+        btns=`<div class="fb-btns">
+          <button class="fb-btn${rs==="will"?" on":""}" onclick="fbResult('${k}','will')">발주해볼게요</button>
+          <button class="fb-btn${rs==="pass"?" on":""}" onclick="fbResult('${k}','pass')">안 할 것 같아요</button>
+          <button class="fb-btn fb-back" onclick="fbStage('${k}','')">↩</button>
+        </div>`;
+      }
+      h+=`<div class="fb-row"><div class="fb-name">${p.keyword}</div>${btns}</div>`;
+    });
+    h+="</div>";
+  }
+
+  el.innerHTML=h;
+}
+
+function toggleTrk(kw){trk[kw]=!trk[kw];localStorage.setItem("trackings",JSON.stringify(trk));render()}
+function fbStage(k,v){if(!fb[k])fb[k]={};fb[k].stage=v;fb[k].result="";localStorage.setItem("feedbacks",JSON.stringify(fb));render()}
+function fbResult(k,v){if(!fb[k])fb[k]={};fb[k].result=fb[k].result===v?"":v;localStorage.setItem("feedbacks",JSON.stringify(fb));render()}
+
+document.getElementById("tier-btn").addEventListener("click",()=>{isPro=!isPro;localStorage.setItem("is_premium",JSON.stringify(isPro));render()});
+document.getElementById("edit-btn").addEventListener("click",()=>{window.location.href="index.html?edit=1"});
+
+let ARCHIVE=[];
+let currentWeek=null;
+
+function renderWeekTabs(){
+  const tabs=document.getElementById("h-week-tabs");
+  if(!tabs) return;
+  const recent=ARCHIVE.slice(0,4);
+  tabs.innerHTML=recent.map(w=>{
+    const active=currentWeek===w.date;
+    return `<div style="padding:6px 14px;border-radius:16px;font-size:13px;font-weight:${active?"600":"500"};cursor:pointer;white-space:nowrap;border:1px solid ${active?"var(--blue-500)":"var(--grey-50)"};background:${active?"var(--blue-50)":"var(--white)"};color:${active?"var(--blue-500)":"var(--grey-500)"}" onclick="loadWeek('${w.date}')">${w.label}</div>`;
+  }).join("");
+}
+
+async function loadWeek(date){
+  const t=Date.now();
+  const url=date?`../data/archive/${date}.json?t=${t}`:`../data/product_analysis.json?t=${t}`;
+  try{const r=await fetch(url);DATA=await r.json();currentWeek=date||DATA.week}catch(e){DATA={products:[]}}
+  renderWeekTabs();
+  render();
+}
+
+async function init(){
+  const t=Date.now();
+  try{const r=await fetch("../data/trade_area_patterns.json?t="+t);PATTERNS=await r.json()}catch(e){PATTERNS={}}
+  try{const r=await fetch("../data/archive/index.json?t="+t);ARCHIVE=(await r.json()).weeks||[]}catch(e){ARCHIVE=[]}
+  await loadWeek(ARCHIVE[0]?.date||null);
+}
+init();
+</script>
+</body>
+</html>

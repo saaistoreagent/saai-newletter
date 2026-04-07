@@ -3,3 +3,5 @@ env.env
 node_modules/
 .DS_Store
 .claude/
+__pycache__/
+data/seoul_cvs_sales.json

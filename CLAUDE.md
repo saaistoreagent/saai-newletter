@@ -32,9 +32,13 @@ saai-newsletter/
 │   ├── store-letter-template.html   # CSS 클래스 기반 HTML (디자인 원본, 수정 금지)
 │   └── store-letter-template-v1.html # v1 백업
 │
+├── product_fit.py                   # 상품×상권 적합도 분석 (랜딩페이지 백엔드)
+│                                     product_analysis.json을 읽어 결과 출력
+│
 ├── data/
 │   ├── weather.json                 # 기상청 API 결과 (fetch_weather.py로 자동 생성)
 │   ├── trends.json                  # 네이버 트렌드 결과 (fetch_naver_trend.py로 자동 생성)
+│   ├── product_analysis.json        # 상품×상권 적합도 (뉴스레터 생성 시 자동 생성)
 │   └── events.md                    # 연간 이벤트 캘린더 (수동 관리)
 │
 └── outputs/
@@ -113,6 +117,16 @@ saai-newsletter/
 - 출처 검색 → 공신력 있는 기사 링크 확보 (기사 날짜 함께 표기)
 - 모든 가이드 파일 참조하여 HTML 작성
 - `outputs/newsletter-YYYY-MM-DD-stibee.html` 생성
+
+### 7단계: 상품 분석 JSON 생성
+- `data/product_analysis.json` 생성 (랜딩페이지 데이터)
+- `product_fit.py`의 `calc_score()`가 `data/trade_area_patterns.json` 기반으로 점수 산출
+- 뉴스레터에는 상권 태그(상위 2개 상권 + 이유)만 노출, 점수는 랜딩 독점
+
+### 8단계: 아카이브 저장
+- `data/archive/{YYYY-MM-DD}.json`으로 복사
+- `data/archive/index.json` 업데이트
+- 이전 주 JSON과 비교하여 메가트렌드 입점 트래킹
 
 ---
 
