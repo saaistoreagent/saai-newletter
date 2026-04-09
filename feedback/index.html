@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>스토어레터 피드백</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+    :root {
+      --blue-500: #376ae2;
+      --blue-50: #ebf0fc;
+      --grey-25: #f9f9fb;
+      --grey-50: #e9e9ea;
+      --grey-300: #8e949d;
+      --grey-500: #565f6c;
+      --grey-700: #3d434d;
+      --grey-900: #24282d;
+      --green-500: #1ab715;
+      --green-50: #e8f8e8;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--grey-900);
+      color: var(--grey-700);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--grey-50);
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 12px;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .card.hidden { display: none; }
+    .card.fade-in { animation: fadeIn 0.3s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 헤더 */
+    .header {
+      background: var(--blue-500);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .header-logo {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+    }
+    .header-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.4;
+    }
+    .header-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 6px;
+    }
+
+    /* 스텝 라벨 */
+    .step-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--blue-500);
+      background: var(--blue-50);
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .question {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--grey-900);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: var(--grey-300);
+      margin-bottom: 12px;
+    }
+
+    /* 이모지 선택 */
+    .emoji-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    .emoji-btn {
+      width: 72px;
+      height: 72px;
+      border: 2px solid var(--grey-50);
+      border-radius: 16px;
+      background: var(--grey-25);
+      font-size: 32px;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .emoji-btn:active { transform: scale(0.95); }
+    .emoji-btn.selected {
+      border-color: var(--blue-500);
+      background: var(--blue-50);
+      box-shadow: 0 0 0 3px rgba(55,106,226,0.15);
+    }
+    .emoji-label {
+      font-size: 10px;
+      color: var(--grey-500);
+      font-weight: 500;
+    }
+
+    /* 칩 선택 */
+    .chip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      padding: 8px 16px;
+      border: 1.5px solid var(--grey-50);
+      border-radius: 999px;
+      background: var(--white);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--grey-700);
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .chip:active { transform: scale(0.96); }
+    .chip.selected {
+      border-color: var(--blue-500);
+      background: var(--blue-50);
+      color: var(--blue-500);
+    }
+
+    /* 버튼 선택 */
+    .option-row {
+      display: flex;
+      gap: 8px;
+    }
+    .option-btn {
+      flex: 1;
+      padding: 14px;
+      border: 1.5px solid var(--grey-50);
+      border-radius: 10px;
+      background: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--grey-700);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+    .option-btn:active { transform: scale(0.97); }
+    .option-btn.selected {
+      border-color: var(--blue-500);
+      background: var(--blue-50);
+      color: var(--blue-500);
+    }
+
+    /* 텍스트 입력 */
+    .text-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--grey-50);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--grey-700);
+      resize: none;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .text-input:focus { border-color: var(--blue-500); }
+    .text-input::placeholder { color: var(--grey-300); }
+
+    .inline-input {
+      margin-top: 10px;
+    }
+    .inline-input.hidden { display: none; }
+
+    /* 제출 버튼 */
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--blue-500);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .submit-btn:active { transform: scale(0.98); }
+    .submit-btn:disabled {
+      background: var(--grey-50);
+      color: var(--grey-300);
+      cursor: not-allowed;
+    }
+
+    .skip-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--grey-300);
+      cursor: pointer;
+    }
+
+    /* 완료 화면 */
+    .done-card {
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .done-emoji { font-size: 48px; margin-bottom: 16px; }
+    .done-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--grey-900);
+      margin-bottom: 8px;
+    }
+    .done-sub {
+      font-size: 14px;
+      color: var(--grey-500);
+    }
+
+    /* 프로그레스 */
+    .progress {
+      height: 3px;
+      background: var(--grey-50);
+      border-radius: 2px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: var(--blue-500);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- 헤더 -->
+  <div class="header">
+    <div class="header-logo">STORE LETTER</div>
+    <div class="header-title">30초 피드백</div>
+    <div class="header-sub" id="weekLabel">4월 2주차 스토어레터는 어땠나요?</div>
+  </div>
+
+  <!-- 프로그레스 -->
+  <div class="progress"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+
+  <!-- Step 1: 만족도 -->
+  <div class="card fade-in" id="step1">
+    <div class="step-label">1 / 4</div>
+    <div class="question">이번 주 스토어레터, 발주에 도움이 됐나요?</div>
+    <div class="emoji-row">
+      <div class="emoji-btn" data-value="good" onclick="selectEmoji(this)">
+        <span>😍</span>
+        <span class="emoji-label">많이 됐어요</span>
+      </div>
+      <div class="emoji-btn" data-value="okay" onclick="selectEmoji(this)">
+        <span>😊</span>
+        <span class="emoji-label">조금 됐어요</span>
+      </div>
+      <div class="emoji-btn" data-value="meh" onclick="selectEmoji(this)">
+        <span>😐</span>
+        <span class="emoji-label">모르겠어요</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2: 도움된 키워드 -->
+  <div class="card hidden" id="step2">
+    <div class="step-label">2 / 4</div>
+    <div class="question">가장 도움된 키워드는요?</div>
+    <div class="hint">여러 개 선택할 수 있어요</div>
+    <div class="chip-grid" id="chipGrid">
+      <!-- JS로 채워짐 -->
+    </div>
+    <div class="skip-link" onclick="nextStep(3)">딱히 없어요 →</div>
+  </div>
+
+  <!-- Step 3: 실제 행동 -->
+  <div class="card hidden" id="step3">
+    <div class="step-label">3 / 4</div>
+    <div class="question">실제로 발주하거나 진열을 바꾼 게 있나요?</div>
+    <div class="option-row">
+      <div class="option-btn" data-value="yes" onclick="selectAction(this)">있어요</div>
+      <div class="option-btn" data-value="no" onclick="selectAction(this)">아직 없어요</div>
+    </div>
+    <div class="inline-input hidden" id="actionDetail">
+      <textarea class="text-input" id="actionText" rows="2" placeholder="뭘 바꿨는지 짧게 알려주세요 (선택)"></textarea>
+    </div>
+  </div>
+
+  <!-- Step 4: 자유 의견 -->
+  <div class="card hidden" id="step4">
+    <div class="step-label">4 / 4</div>
+    <div class="question">바라는 점이 있다면 자유롭게 적어주세요</div>
+    <div class="hint">안 적어도 괜찮아요</div>
+    <textarea class="text-input" id="freeText" rows="3" placeholder="예: 음료 트렌드를 더 다뤄줬으면 좋겠어요"></textarea>
+  </div>
+
+  <!-- 제출 -->
+  <div class="card hidden" id="submitCard">
+    <button class="submit-btn" id="submitBtn" onclick="submitFeedback()">피드백 보내기</button>
+  </div>
+
+  <!-- 완료 -->
+  <div class="card hidden" id="doneCard">
+    <div class="done-card">
+      <div class="done-emoji">🎉</div>
+      <div class="done-title">감사합니다!</div>
+      <div class="done-sub">다음 주 스토어레터에 반영할게요</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── URL 파라미터 읽기 ──
+const params = new URLSearchParams(window.location.search);
+const WEEK = params.get('week') || '';
+const SUBSCRIBER = params.get('sub') || '';
+
+if (WEEK) {
+  document.getElementById('weekLabel').textContent = `${WEEK} 스토어레터는 어땠나요?`;
+}
+
+// ── 키워드 목록 (URL 파라미터 or 기본값) ──
+const keywordsParam = params.get('keywords');
+const KEYWORDS = keywordsParam
+  ? keywordsParam.split(',').map(k => k.trim())
+  : ['버터떡', '두쫀쿠', '단백질쉐이크', '아몬드브리즈', '프링글스 초코블럭', '박은영 마라샹궈', '정호영 다카마쓰우동', '에드워드리 김치전'];
+
+const chipGrid = document.getElementById('chipGrid');
+KEYWORDS.forEach(kw => {
+  const chip = document.createElement('div');
+  chip.className = 'chip';
+  chip.textContent = kw;
+  chip.onclick = () => chip.classList.toggle('selected');
+  chipGrid.appendChild(chip);
+});
+
+// ── 데이터 ──
+const data = {
+  week: WEEK,
+  subscriber: SUBSCRIBER,
+  satisfaction: '',
+  helpfulKeywords: [],
+  tookAction: '',
+  actionDetail: '',
+  freeText: '',
+  timestamp: ''
+};
+
+let currentStep = 1;
+
+function updateProgress() {
+  const pct = Math.min(((currentStep - 1) / 4) * 100, 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+function showStep(n) {
+  const card = document.getElementById('step' + n);
+  if (card) {
+    card.classList.remove('hidden');
+    card.classList.add('fade-in');
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function nextStep(n) {
+  currentStep = n;
+  updateProgress();
+  showStep(n);
+
+  // step4 보이면 제출 버튼도
+  if (n >= 4) {
+    setTimeout(() => {
+      document.getElementById('submitCard').classList.remove('hidden');
+      document.getElementById('submitCard').classList.add('fade-in');
+    }, 200);
+  }
+}
+
+// ── Step 1: 이모지 ──
+function selectEmoji(el) {
+  document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  data.satisfaction = el.dataset.value;
+
+  setTimeout(() => nextStep(2), 300);
+}
+
+// ── Step 2: 칩 → 자동 다음 (버튼 없이 스킵 링크로) ──
+// 칩 선택 후 3초 후 or 스킵 클릭 시 다음
+
+let chipTimer = null;
+chipGrid.addEventListener('click', () => {
+  clearTimeout(chipTimer);
+  chipTimer = setTimeout(() => nextStep(3), 1500);
+});
+
+// ── Step 3: 행동 ──
+function selectAction(el) {
+  document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  data.tookAction = el.dataset.value;
+
+  const detail = document.getElementById('actionDetail');
+  if (el.dataset.value === 'yes') {
+    detail.classList.remove('hidden');
+  } else {
+    detail.classList.add('hidden');
+  }
+
+  setTimeout(() => nextStep(4), 500);
+}
+
+// ── 제출 ──
+async function submitFeedback() {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '보내는 중...';
+
+  // 데이터 수집
+  data.helpfulKeywords = [...document.querySelectorAll('.chip.selected')].map(c => c.textContent);
+  data.actionDetail = document.getElementById('actionText').value;
+  data.freeText = document.getElementById('freeText').value;
+  data.timestamp = new Date().toISOString();
+
+  // Google Apps Script로 전송
+  const SCRIPT_URL = getScriptUrl();
+
+  if (SCRIPT_URL) {
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    } catch (e) {
+      console.log('전송 실패, 로컬 저장:', e);
+    }
+  }
+
+  // 콘솔에도 출력 (테스트용)
+  console.log('피드백 데이터:', JSON.stringify(data, null, 2));
+
+  // 완료 화면
+  document.getElementById('submitCard').classList.add('hidden');
+  document.getElementById('step4').classList.add('hidden');
+
+  const done = document.getElementById('doneCard');
+  done.classList.remove('hidden');
+  done.classList.add('fade-in');
+  done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  document.getElementById('progressBar').style.width = '100%';
+}
+
+function getScriptUrl() {
+  return params.get('endpoint') || 'https://script.google.com/macros/s/AKfycbxRLJAluavgSubrCVRZ2KDoqE2lXbDPSkWCsBCVNmDnAqbR332AROrZsF89CFBRiTKg5g/exec';
+}
+</script>
+
+</body>
+</html>

@@ -1,31 +1,13 @@
 {
-  "generated_at": "2026-04-01 13:06",
-  "base_time": "20260401 0600",
+  "generated_at": "2026-04-08 15:50",
+  "base_time": "20260408 0600",
   "period": {
-    "start": "2026-04-04",
-    "end": "2026-04-08"
+    "start": "2026-04-11",
+    "end": "2026-04-15"
   },
   "regions": {
     "수도권": {
-      "max_temp": 17,
-      "min_temp": 7,
-      "condition": "구름 많음",
-      "icon": "⛅",
-      "rain_prob_am": 20,
-      "rain_prob_pm": 30,
-      "specials": null
-    },
-    "강원": {
-      "max_temp": 17,
-      "min_temp": 4,
-      "condition": "구름 많음",
-      "icon": "⛅",
-      "rain_prob_am": 20,
-      "rain_prob_pm": 20,
-      "specials": null
-    },
-    "충청권": {
-      "max_temp": 19,
+      "max_temp": 24,
       "min_temp": 7,
       "condition": "구름 많음",
       "icon": "⛅",
@@ -33,31 +15,49 @@
       "rain_prob_pm": 30,
       "specials": null
     },
-    "전라권": {
-      "max_temp": 19,
-      "min_temp": 7,
+    "강원": {
+      "max_temp": 24,
+      "min_temp": 5,
+      "condition": "구름 많음",
+      "icon": "⛅",
+      "rain_prob_am": 30,
+      "rain_prob_pm": 30,
+      "specials": null
+    },
+    "충청권": {
+      "max_temp": 25,
+      "min_temp": 6,
       "condition": "구름 많음",
       "icon": "⛅",
       "rain_prob_am": 20,
-      "rain_prob_pm": 20,
+      "rain_prob_pm": 30,
+      "specials": null
+    },
+    "전라권": {
+      "max_temp": 22,
+      "min_temp": 10,
+      "condition": "구름 많음",
+      "icon": "⛅",
+      "rain_prob_am": 20,
+      "rain_prob_pm": 40,
       "specials": null
     },
     "경상권": {
-      "max_temp": 18,
-      "min_temp": 11,
-      "condition": "맑음",
-      "icon": "☀️",
-      "rain_prob_am": 10,
-      "rain_prob_pm": 10,
-      "specials": null
-    },
-    "제주": {
-      "max_temp": 18,
-      "min_temp": 9,
+      "max_temp": 21,
+      "min_temp": 10,
       "condition": "구름 많음",
       "icon": "⛅",
       "rain_prob_am": 20,
-      "rain_prob_pm": 20,
+      "rain_prob_pm": 30,
+      "specials": null
+    },
+    "제주": {
+      "max_temp": 19,
+      "min_temp": 14,
+      "condition": "흐림",
+      "icon": "🌥",
+      "rain_prob_am": 40,
+      "rain_prob_pm": 70,
       "specials": null
     }
   }
