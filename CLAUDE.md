@@ -20,30 +20,29 @@ saai-newsletter/
 ├── 가설검증_통합결과.xlsx             # 오피스 상권 매출 가설검증 결과 (155건)
 │                                     날씨·이벤트 섹션 판매 TIP 근거로 활용
 │
+├── .claude/
+│   └── skills/
+│       └── newsletter-html-rules/   # 뉴스레터 HTML 구조·id·style 단일 기준
+│           ├── SKILL.md             # id 매핑·섹션 주석 규칙
+│           └── newsletter-template.html  # canonical 템플릿 (디자인 원본)
+│
 ├── guides/
 │   ├── voice-tone-guide.md          # 보이스톤·CTA·퍼소나·금지 표현
 │   ├── newsletter-trend-sources.md  # 키워드 검색 쿼리 규칙
 │   └── newsletter-trade-area.md     # 상권 유형별 특성 (주택가/오피스/대학가/역세권/관광지)
 │
 ├── prompt/
-│   └── newsletter-prompt.md         # 뉴스레터 생성 지시문 (섹션별 작성 규칙)
-│
-├── template/
-│   ├── store-letter-template.html   # CSS 클래스 기반 HTML (디자인 원본, 수정 금지)
-│   └── store-letter-template-v1.html # v1 백업
-│
-├── product_fit.py                   # 상품×상권 적합도 분석 (랜딩페이지 백엔드)
-│                                     product_analysis.json을 읽어 결과 출력
+│   └── newsletter-prompt.md         # 뉴스레터 생성 지시문 v8 (콘텐츠·톤·편집 판단만)
+│                                     HTML 구조·id·style은 skill 참조
 │
 ├── data/
 │   ├── weather.json                 # 기상청 API 결과 (fetch_weather.py로 자동 생성)
 │   ├── trends.json                  # 네이버 트렌드 결과 (fetch_naver_trend.py로 자동 생성)
-│   ├── product_analysis.json        # 상품×상권 적합도 (뉴스레터 생성 시 자동 생성)
 │   └── events.md                    # 연간 이벤트 캘린더 (수동 관리)
 │
+├── feedback/                        # 피드백 수집·분석 관련 파일
+│
 └── outputs/
-    ├── newsletter-YYYY-MM-DD.html         # CSS 클래스 버전 (브라우저 미리보기용)
-    ├── newsletter-YYYY-MM-DD-inline.html  # juice로 인라인 CSS 변환 (중간 산출물)
     └── newsletter-YYYY-MM-DD-stibee.html  # 스티비 발송용 최종본 (인라인 CSS 테이블 레이아웃)
 ```
 
@@ -51,15 +50,20 @@ saai-newsletter/
 
 ## 출력 포맷
 
+> **⚠ 뉴스레터 HTML을 생성·수정할 때는 반드시 `newsletter-html-rules` skill을 사용할 것.**
+> 프로젝트 로컬 skill(`.claude/skills/newsletter-html-rules/`)이 단일 기준이며, id 매핑·섹션 주석·템플릿 구조는 skill 지침을 따른다.
+
 최종 발송용 출력은 **stibee 포맷**:
 - `<table>` 기반 레이아웃 (이메일 클라이언트 호환)
 - 모든 CSS를 `style=""` 인라인으로 작성
-- CSS 클래스(`class="trend-kw"` 등) 대신 인라인 스타일 직접 지정
-- 색상·간격·폰트 값은 `template/store-letter-template.html`의 CSS 변수 참조
+- **HTML 구조·id 속성·섹션 주석 포맷은 `newsletter-html-rules` skill을 반드시 따를 것**
+  - `report-poll.py`가 id로 파싱 (header-title, section-title, card, card-title, card-body, card-badge, weather-*, event-*)
+  - 섹션 주석: `<!-- ── MODULE X: 제목 ── -->` ~ `<!-- /MODULE X -->`
+  - canonical 템플릿: skill 디렉토리의 `newsletter-template.html`
 - 피드백 버튼에 Google Forms 링크 연결
 - 푸터에 "매출 경향은 내부 분석 기반으로, 상권에 따라 다를 수 있어요" 면책 문구 포함
 
-참고: `newsletter-YYYY-MM-DD.html` (CSS 클래스 버전)은 로컬 미리보기용. 실제 발송은 `-stibee.html` 파일.
+실제 발송 파일은 `outputs/newsletter-YYYY-MM-DD-stibee.html`.
 
 ---
 
@@ -160,18 +164,8 @@ saai-newsletter/
 - 피드백: https://vo.la/cLQAdrl
 - 구독 신청: https://vo.la/ahTz4Z2
 - 수신거부: https://vo.la/cmsQt8j (푸터 최하단에 배치)
-- 피드백 버튼: pill형, 너비 440px, 높이 64px, 폰트 20px, border-radius 9999px
 - 구독 공유: "주변에 추천하고 싶다면 이 링크를 공유해주세요" 형태로 본문 링크
-
-### 7단계: 상품 분석 JSON 생성
-- `data/product_analysis.json` 생성 (랜딩페이지 데이터)
-- `product_fit.py`의 `calc_score()`가 `data/trade_area_patterns.json` 기반으로 점수 산출
-- 뉴스레터에는 상권 태그(상위 2개 상권 + 이유)만 노출, 점수는 랜딩 독점
-
-### 8단계: 아카이브 저장
-- `data/archive/{YYYY-MM-DD}.json`으로 복사
-- `data/archive/index.json` 업데이트
-- 이전 주 JSON과 비교하여 메가트렌드 입점 트래킹
+- 버튼 크기·스타일은 skill 템플릿 고정
 
 ---
 
@@ -182,8 +176,8 @@ saai-newsletter/
 | `voice-tone-guide.md` | 보이스톤·CTA·퍼소나·금지 표현 | 팀 |
 | `newsletter-trend-sources.md` | 키워드 검색 쿼리 규칙 | 팀 |
 | `newsletter-trade-area.md` | 상권 유형별 특성 | 팀 |
-| `newsletter-prompt.md` | 섹션별 생성 규칙·placeholder 매핑 | 팀 |
-| `store-letter-template.html` | HTML 디자인 원본 (수정 금지) | 슬기 |
+| `newsletter-prompt.md` | 콘텐츠·톤·편집 판단 규칙 (v8) | 팀 |
+| `.claude/skills/newsletter-html-rules/` | HTML 구조·id·style·템플릿 (단일 기준) | 슬기 |
 | `fetch_weather.py` | 기상청 API 호출 | 팀 |
 | `fetch_naver_trend.py` | 네이버 DataLab API 호출 | 팀 |
 | `가설검증_통합결과.xlsx` | 오피스 상권 매출 가설검증 (155건, 7축) | 팀 |
@@ -194,7 +188,7 @@ saai-newsletter/
 
 ## 주의사항
 
-- `store-letter-template.html` CSS·SVG 로고·피드백 섹션·푸터 수정 금지
+- HTML 구조·id·style은 `newsletter-html-rules` skill이 단일 기준. prompt에는 콘텐츠·톤 규칙만
 - 트렌드 상태값은 반드시 네이버 DataLab + 웹 검색으로 판단. 추측 금지.
   - 트렌드 카테고리 → 데이터랩 기준선 비교 + 배지
   - 개별 상품명 → 데이터랩 비교 의미 없음, 기사 팩트 + SNS 반응으로 판단

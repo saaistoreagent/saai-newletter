@@ -1,63 +1,63 @@
 {
-  "generated_at": "2026-04-08 15:50",
-  "base_time": "20260408 0600",
+  "generated_at": "2026-04-22 12:45",
+  "base_time": "20260422 0600",
   "period": {
-    "start": "2026-04-11",
-    "end": "2026-04-15"
+    "start": "2026-04-25",
+    "end": "2026-04-29"
   },
   "regions": {
     "수도권": {
-      "max_temp": 24,
-      "min_temp": 7,
-      "condition": "구름 많음",
-      "icon": "⛅",
-      "rain_prob_am": 30,
+      "max_temp": 25,
+      "min_temp": 9,
+      "condition": "맑음",
+      "icon": "☀️",
+      "rain_prob_am": 10,
       "rain_prob_pm": 30,
       "specials": null
     },
     "강원": {
       "max_temp": 24,
-      "min_temp": 5,
-      "condition": "구름 많음",
-      "icon": "⛅",
-      "rain_prob_am": 30,
+      "min_temp": 8,
+      "condition": "맑음",
+      "icon": "☀️",
+      "rain_prob_am": 10,
       "rain_prob_pm": 30,
       "specials": null
     },
     "충청권": {
       "max_temp": 25,
-      "min_temp": 6,
-      "condition": "구름 많음",
-      "icon": "⛅",
-      "rain_prob_am": 20,
-      "rain_prob_pm": 30,
+      "min_temp": 8,
+      "condition": "맑음",
+      "icon": "☀️",
+      "rain_prob_am": 10,
+      "rain_prob_pm": 20,
       "specials": null
     },
     "전라권": {
-      "max_temp": 22,
-      "min_temp": 10,
-      "condition": "구름 많음",
-      "icon": "⛅",
-      "rain_prob_am": 20,
-      "rain_prob_pm": 40,
+      "max_temp": 25,
+      "min_temp": 9,
+      "condition": "맑음",
+      "icon": "☀️",
+      "rain_prob_am": 10,
+      "rain_prob_pm": 20,
       "specials": null
     },
     "경상권": {
-      "max_temp": 21,
-      "min_temp": 10,
-      "condition": "구름 많음",
-      "icon": "⛅",
-      "rain_prob_am": 20,
-      "rain_prob_pm": 30,
+      "max_temp": 22,
+      "min_temp": 12,
+      "condition": "맑음",
+      "icon": "☀️",
+      "rain_prob_am": 10,
+      "rain_prob_pm": 20,
       "specials": null
     },
     "제주": {
-      "max_temp": 19,
+      "max_temp": 20,
       "min_temp": 14,
-      "condition": "흐림",
-      "icon": "🌥",
-      "rain_prob_am": 40,
-      "rain_prob_pm": 70,
+      "condition": "맑음",
+      "icon": "☀️",
+      "rain_prob_am": 10,
+      "rain_prob_pm": 20,
       "specials": null
     }
   }
