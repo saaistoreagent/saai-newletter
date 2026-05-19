@@ -1,0 +1,30 @@
+# 이 저장소는 이미지만 호스팅합니다.
+# 로컬 작업 디렉토리에 남아있는 다른 파일들은 git에 넣지 않음.
+
+.env
+env.env
+.DS_Store
+__pycache__/
+node_modules/
+
+# 코드·문서·내부 데이터 (다른 곳에서 관리)
+*.py
+*.html
+*.xlsx
+*.csv
+*.json
+
+# 작업 폴더
+data/
+feedback/
+guides/
+outputs/
+prompt/
+.claude/
+CLAUDE.md
+PIPELINE.md
+package.json
+package-lock.json
+
+Icon?
+outputs/logos/
